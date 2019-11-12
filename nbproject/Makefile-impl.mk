@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Projeto_SCCS_Odometro.X
+PROJECTNAME=Projeto_Odometro
 
 # Active Configuration
 DEFAULTCONF=default

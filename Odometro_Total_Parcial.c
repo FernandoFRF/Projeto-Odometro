@@ -13,9 +13,12 @@
 
 
 void odometroTotal(void){
-    
-    if (atualizaOdoTotal == 1)
+    if (atualizaOdoTotal)
     {
+        for(unsigned char i=0; i<5; i++)
+        {
+            EEPROM_ReadByte(0x10+i);
+        }
         odoTotal[5]++;
         if (odoTotal[5] > 0x39)
         {
@@ -46,20 +49,21 @@ void odometroTotal(void){
                 }
             }
         }
+        
         PosicaoCursorLCD(1, 7);
         EscreveFraseRamLCD(odoTotal);
         atualizaOdoTotal = 0;
-        
-        for(unsigned char i=0, j=4; i<5; i++, j--)
+                
+    }
+    for(unsigned char i=0, j=4; i<5; i++, j--)
         {
             EEPROM_WriteByte(0x10+i , odoTotal[j]);
         }
-    }
 }
 
 void odometroParcial(void){
     static unsigned char i;
-    if (atualizaOdoParcial == 1){
+    if (atualizaOdoParcial){
         odoParcial[5]++;
         
         if (odoParcial[5] > 0x39){

@@ -39,9 +39,14 @@ void main(void){
     initHw();
     Init_EEPROM();
     display();
+//    for(unsigned char i=0; i<5; i++)
+//        {
+//            EEPROM_ReadByte(0x70+i);
+//        }
     
     while (1)
     {
+     
         odometroTotal();
         odometroParcial();
         //resetodoparcial

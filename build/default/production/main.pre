@@ -4821,7 +4821,11 @@ initHw();
 Init_EEPROM();
 display();
 
-# 47
+for(unsigned char i=0, j=4; i<5; i++, j--)
+{
+EEPROM_ReadByte(odoTotal[j]);
+}
+
 while (1)
 {
 

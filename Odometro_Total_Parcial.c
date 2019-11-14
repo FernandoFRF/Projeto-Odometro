@@ -15,10 +15,6 @@
 void odometroTotal(void){
     if (atualizaOdoTotal)
     {
-        for(unsigned char i=0; i<5; i++)
-        {
-            EEPROM_ReadByte(0x10+i);
-        }
         odoTotal[5]++;
         if (odoTotal[5] > 0x39)
         {

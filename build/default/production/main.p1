@@ -32,6 +32,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Init_EEPROM `(v ~T0 @X0 0 ef ]
 "17 main.c
 [v _display `(v ~T0 @X0 0 ef ]
+"10 EEPROM.h
+[v _EEPROM_ReadByte `(uc ~T0 @X0 0 ef1`uc ]
 "6 Odometro_Total_Parcial.h
 [v _odometroTotal `(v ~T0 @X0 0 ef ]
 "7
@@ -3808,172 +3810,197 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 41: display();
 "41
 [e ( _display ..  ]
-[; ;main.c: 47: while (1)
-"47
-[e :U 368 ]
-[; ;main.c: 48: {
-"48
+[; ;main.c: 43: for(unsigned char i=0, j=4; i<5; i++, j--)
+"43
 {
-[; ;main.c: 50: odometroTotal();
-"50
-[e ( _odometroTotal ..  ]
-[; ;main.c: 51: odometroParcial();
-"51
-[e ( _odometroParcial ..  ]
-"53
-}
-[e :U 367 ]
-"47
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[v _j `uc ~T0 @X0 1 a ]
+[e = _j -> -> 4 `i `uc ]
+[e $ < -> _i `i -> 5 `i 367  ]
 [e $U 368  ]
-[e :U 369 ]
-[; ;main.c: 53: }
-[; ;main.c: 54: }
+"44
+[e :U 367 ]
+[; ;main.c: 44: {
+{
+[; ;main.c: 45: EEPROM_ReadByte(odoTotal[j]);
+"45
+[e ( _EEPROM_ReadByte (1 *U + &U _odoTotal * -> _j `ux -> -> # *U &U _odoTotal `ui `ux ]
+"46
+}
+"43
+[e ; ++ _i -> -> 1 `i `uc -- _j -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 5 `i 367  ]
+[e :U 368 ]
+"46
+}
+[; ;main.c: 46: }
+[; ;main.c: 48: while (1)
+"48
+[e :U 371 ]
+[; ;main.c: 49: {
+"49
+{
+[; ;main.c: 51: odometroTotal();
+"51
+[e ( _odometroTotal ..  ]
+[; ;main.c: 52: odometroParcial();
+"52
+[e ( _odometroParcial ..  ]
 "54
+}
+[e :U 370 ]
+"48
+[e $U 371  ]
+[e :U 372 ]
+[; ;main.c: 54: }
+[; ;main.c: 55: }
+"55
 [e :UE 366 ]
 }
-"57
+"58
 [v _initInterrupt `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 57: void initInterrupt(void){
+[; ;main.c: 58: void initInterrupt(void){
 [e :U _initInterrupt ]
 [f ]
-[; ;main.c: 58: INTCON = 0b11100000;
-"58
-[e = _INTCON -> -> 224 `i `uc ]
-[; ;main.c: 59: INTCON2 = 0b10000000;
+[; ;main.c: 59: INTCON = 0b11100000;
 "59
-[e = _INTCON2 -> -> 128 `i `uc ]
-[; ;main.c: 60: INTCON3 = 0b00000000;
+[e = _INTCON -> -> 224 `i `uc ]
+[; ;main.c: 60: INTCON2 = 0b10000000;
 "60
-[e = _INTCON3 -> -> 0 `i `uc ]
-[; ;main.c: 61: CCP1CON = 0b00000101;
+[e = _INTCON2 -> -> 128 `i `uc ]
+[; ;main.c: 61: INTCON3 = 0b00000000;
 "61
-[e = _CCP1CON -> -> 5 `i `uc ]
-[; ;main.c: 62: PIR1 = 0b00000000;
+[e = _INTCON3 -> -> 0 `i `uc ]
+[; ;main.c: 62: CCP1CON = 0b00000101;
 "62
-[e = _PIR1 -> -> 0 `i `uc ]
-[; ;main.c: 63: PIR2 = 0b00000000;
+[e = _CCP1CON -> -> 5 `i `uc ]
+[; ;main.c: 63: PIR1 = 0b00000000;
 "63
-[e = _PIR2 -> -> 0 `i `uc ]
-[; ;main.c: 64: PIE1 = 0b00000100;
+[e = _PIR1 -> -> 0 `i `uc ]
+[; ;main.c: 64: PIR2 = 0b00000000;
 "64
-[e = _PIE1 -> -> 4 `i `uc ]
-[; ;main.c: 65: PIE2 = 0b00000000;
+[e = _PIR2 -> -> 0 `i `uc ]
+[; ;main.c: 65: PIE1 = 0b00000100;
 "65
-[e = _PIE2 -> -> 0 `i `uc ]
-[; ;main.c: 66: IPR1 = 0b00000000;
+[e = _PIE1 -> -> 4 `i `uc ]
+[; ;main.c: 66: PIE2 = 0b00000000;
 "66
-[e = _IPR1 -> -> 0 `i `uc ]
-[; ;main.c: 67: IPR2 = 0b00000000;
+[e = _PIE2 -> -> 0 `i `uc ]
+[; ;main.c: 67: IPR1 = 0b00000000;
 "67
-[e = _IPR2 -> -> 0 `i `uc ]
-[; ;main.c: 68: RCON = 0b00000000;
+[e = _IPR1 -> -> 0 `i `uc ]
+[; ;main.c: 68: IPR2 = 0b00000000;
 "68
-[e = _RCON -> -> 0 `i `uc ]
-[; ;main.c: 69: }
+[e = _IPR2 -> -> 0 `i `uc ]
+[; ;main.c: 69: RCON = 0b00000000;
 "69
-[e :UE 370 ]
-}
+[e = _RCON -> -> 0 `i `uc ]
+[; ;main.c: 70: }
 "70
+[e :UE 373 ]
+}
+"71
 [v _initHw `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 70: void initHw(void){
+[; ;main.c: 71: void initHw(void){
 [e :U _initHw ]
 [f ]
-[; ;main.c: 72: TRISA = 0x00;
-"72
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;main.c: 73: TRISB = 0x00;
+[; ;main.c: 73: TRISA = 0x00;
 "73
-[e = _TRISB -> -> 0 `i `uc ]
-[; ;main.c: 74: TRISC = 0x00;
+[e = _TRISA -> -> 0 `i `uc ]
+[; ;main.c: 74: TRISB = 0x00;
 "74
-[e = _TRISC -> -> 0 `i `uc ]
-[; ;main.c: 75: TRISCbits.RC2 = 1;
+[e = _TRISB -> -> 0 `i `uc ]
+[; ;main.c: 75: TRISC = 0x00;
 "75
-[e = . . _TRISCbits 1 2 -> -> 1 `i `uc ]
-[; ;main.c: 76: TRISD = 0x00;
+[e = _TRISC -> -> 0 `i `uc ]
+[; ;main.c: 76: TRISCbits.RC2 = 1;
 "76
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;main.c: 77: TRISE = 0x0F;
+[e = . . _TRISCbits 1 2 -> -> 1 `i `uc ]
+[; ;main.c: 77: TRISD = 0x00;
 "77
+[e = _TRISD -> -> 0 `i `uc ]
+[; ;main.c: 78: TRISE = 0x0F;
+"78
 [e = _TRISE -> -> 15 `i `uc ]
-[; ;main.c: 79: ADCON0 = 0b00000001;
-"79
-[e = _ADCON0 -> -> 1 `i `uc ]
-[; ;main.c: 80: ADCON1 = 0b00001101;
+[; ;main.c: 80: ADCON0 = 0b00000001;
 "80
-[e = _ADCON1 -> -> 13 `i `uc ]
-[; ;main.c: 81: ADCON2 = 0b10000100;
+[e = _ADCON0 -> -> 1 `i `uc ]
+[; ;main.c: 81: ADCON1 = 0b00001101;
 "81
+[e = _ADCON1 -> -> 13 `i `uc ]
+[; ;main.c: 82: ADCON2 = 0b10000100;
+"82
 [e = _ADCON2 -> -> 132 `i `uc ]
-[; ;main.c: 83: PORTEbits.RE0 = 0;
-"83
+[; ;main.c: 84: PORTEbits.RE0 = 0;
+"84
 [e = . . _PORTEbits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 86: LATA = 0x00;
-"86
-[e = _LATA -> -> 0 `i `uc ]
-[; ;main.c: 87: LATB = 0x00;
+[; ;main.c: 87: LATA = 0x00;
 "87
-[e = _LATB -> -> 0 `i `uc ]
-[; ;main.c: 88: LATD = 0x00;
+[e = _LATA -> -> 0 `i `uc ]
+[; ;main.c: 88: LATB = 0x00;
 "88
+[e = _LATB -> -> 0 `i `uc ]
+[; ;main.c: 89: LATD = 0x00;
+"89
 [e = _LATD -> -> 0 `i `uc ]
-[; ;main.c: 90: T0CON = 0b01000101;
-"90
-[e = _T0CON -> -> 69 `i `uc ]
-[; ;main.c: 91: CCP1CON = 0b00000101;
+[; ;main.c: 91: T0CON = 0b01000101;
 "91
-[e = _CCP1CON -> -> 5 `i `uc ]
-[; ;main.c: 92: T1CON = 0b01000100;
+[e = _T0CON -> -> 69 `i `uc ]
+[; ;main.c: 92: CCP1CON = 0b00000101;
 "92
-[e = _T1CON -> -> 68 `i `uc ]
-[; ;main.c: 93: T3CONbits.T3CCP1 = 0;
+[e = _CCP1CON -> -> 5 `i `uc ]
+[; ;main.c: 93: T1CON = 0b01000100;
 "93
-[e = . . _T3CONbits 1 3 -> -> 0 `i `uc ]
-[; ;main.c: 94: INTCONbits.GIE = 1;
+[e = _T1CON -> -> 68 `i `uc ]
+[; ;main.c: 94: T3CONbits.T3CCP1 = 0;
 "94
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 95: INTCONbits.PEIE = 1;
+[e = . . _T3CONbits 1 3 -> -> 0 `i `uc ]
+[; ;main.c: 95: INTCONbits.GIE = 1;
 "95
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 96: }
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+[; ;main.c: 96: INTCONbits.PEIE = 1;
 "96
-[e :UE 371 ]
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+[; ;main.c: 97: }
+"97
+[e :UE 374 ]
 }
-"98
+"99
 [v _display `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 98: void display(void){
+[; ;main.c: 99: void display(void){
 [e :U _display ]
 [f ]
-[; ;main.c: 99: PosicaoCursorLCD(1, 7);
-"99
-[e ( _PosicaoCursorLCD (2 , -> -> 1 `i `uc -> -> 7 `i `uc ]
-[; ;main.c: 100: EscreveFraseRamLCD(odoTotal);
+[; ;main.c: 100: PosicaoCursorLCD(1, 7);
 "100
-[e ( _EscreveFraseRamLCD (1 &U _odoTotal ]
-[; ;main.c: 101: PosicaoCursorLCD(2, 7);
+[e ( _PosicaoCursorLCD (2 , -> -> 1 `i `uc -> -> 7 `i `uc ]
+[; ;main.c: 101: EscreveFraseRamLCD(odoTotal);
 "101
-[e ( _PosicaoCursorLCD (2 , -> -> 2 `i `uc -> -> 7 `i `uc ]
-[; ;main.c: 102: EscreveFraseRamLCD(odoParcial);
+[e ( _EscreveFraseRamLCD (1 &U _odoTotal ]
+[; ;main.c: 102: PosicaoCursorLCD(2, 7);
 "102
-[e ( _EscreveFraseRamLCD (1 &U _odoParcial ]
-[; ;main.c: 103: PosicaoCursorLCD(1, 14);
+[e ( _PosicaoCursorLCD (2 , -> -> 2 `i `uc -> -> 7 `i `uc ]
+[; ;main.c: 103: EscreveFraseRamLCD(odoParcial);
 "103
-[e ( _PosicaoCursorLCD (2 , -> -> 1 `i `uc -> -> 14 `i `uc ]
-[; ;main.c: 104: EscreveFraseRamLCD("Km");
+[e ( _EscreveFraseRamLCD (1 &U _odoParcial ]
+[; ;main.c: 104: PosicaoCursorLCD(1, 14);
 "104
-[e ( _EscreveFraseRamLCD (1 -> :s 1C `*uc ]
-[; ;main.c: 105: PosicaoCursorLCD(2, 14);
+[e ( _PosicaoCursorLCD (2 , -> -> 1 `i `uc -> -> 14 `i `uc ]
+[; ;main.c: 105: EscreveFraseRamLCD("Km");
 "105
-[e ( _PosicaoCursorLCD (2 , -> -> 2 `i `uc -> -> 14 `i `uc ]
-[; ;main.c: 106: EscreveFraseRamLCD("Km");
+[e ( _EscreveFraseRamLCD (1 -> :s 1C `*uc ]
+[; ;main.c: 106: PosicaoCursorLCD(2, 14);
 "106
-[e ( _EscreveFraseRamLCD (1 -> :s 2C `*uc ]
-[; ;main.c: 107: }
+[e ( _PosicaoCursorLCD (2 , -> -> 2 `i `uc -> -> 14 `i `uc ]
+[; ;main.c: 107: EscreveFraseRamLCD("Km");
 "107
-[e :UE 372 ]
+[e ( _EscreveFraseRamLCD (1 -> :s 2C `*uc ]
+[; ;main.c: 108: }
+"108
+[e :UE 375 ]
 }
 [a 1C 75 109 0 ]
 [a 2C 75 109 0 ]

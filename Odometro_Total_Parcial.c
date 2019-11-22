@@ -11,6 +11,8 @@
 #include "EEPROM.h"    
 #include "Odometro_Total_Parcial.h"
 
+#define B_Reset  PORTEbits.RE0
+
 
 void odometroTotal(void){
     
@@ -53,7 +55,10 @@ void odometroTotal(void){
 }
 
 void odometroParcial(void){
+    unsigned char trava = 0;
     static unsigned char i;
+    char position = 0;
+    
     if (atualizaOdoParcial){
         odoParcial[5]++;
         
@@ -82,9 +87,20 @@ void odometroParcial(void){
                     }
                 }
             }
-        PosicaoCursorLCD(2, 7);
-        EscreveFraseRamLCD(odoParcial);
-        atualizaOdoParcial = 0;
+         PosicaoCursorLCD(2, 7);
+         EscreveFraseRamLCD(odoParcial);
+         atualizaOdoParcial = 0;
+        
+         if((B_Reset == 0)&&(trava == 0)) {
+             for(position = 5; position >= 0; position--) {
+                 odoParcial[position] = 0x30;    
+             }
+         
+          trava = 1;
+        
+         } else if((B_Reset == 1)&&(trava == 1)){ 
+             trava  = 0; 
+           }
         }
     }
 }

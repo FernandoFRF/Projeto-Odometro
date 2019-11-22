@@ -10,6 +10,9 @@
 #include "EEPROM.h"  
 #include "Odometro_Total_Parcial.h"
 
+
+#define B2       PORTEbits.RE1
+#define B3       PORTEbits.RE2
 /*Declaração de Prototipos de Funções*/
 
 void initInterrupt(void);

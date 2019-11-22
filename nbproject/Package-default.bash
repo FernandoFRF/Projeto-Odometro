@@ -10,9 +10,9 @@ CND_CONF=default
 CND_DISTDIR=dist
 TMPDIR=build/${CND_CONF}/${IMAGE_TYPE}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/Projeto_SCCS_Odometro.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-OUTPUT_BASENAME=Projeto_SCCS_Odometro.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-PACKAGE_TOP_DIR=projetosccsodometro.x/
+OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/Projeto_Odometro.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+OUTPUT_BASENAME=Projeto_Odometro.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+PACKAGE_TOP_DIR=projetoodometro/
 
 # Functions
 function checkReturnCode
@@ -57,15 +57,15 @@ mkdir -p ${TMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory ${TMPDIR}/projetosccsodometro.x/bin
+makeDirectory ${TMPDIR}/projetoodometro/bin
 copyFileToTmpDir "${OUTPUT_PATH}" "${TMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/package/projetosccsodometro.x.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/package/projetoodometro.tar
 cd ${TMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/projetosccsodometro.x.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/projetoodometro.tar *
 checkReturnCode
 
 # Cleanup

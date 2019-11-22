@@ -25,6 +25,9 @@
 #define TIMER0_INIT_VALUE          67
 #define t_High                     0x01
 #define t_Low                      0x00
+#define B_Reset                    PORTEbits.RE0
+#define B2                         PORTEbits.RE1
+#define B3                         PORTEbits.RE2
 
 //Tasks scheduling defines
 #define INDEX_TAREFA_1                 0

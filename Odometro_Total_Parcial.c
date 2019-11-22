@@ -11,7 +11,7 @@
 #include "EEPROM.h"    
 #include "Odometro_Total_Parcial.h"
 
-#define B_Reset  PORTEbits.RE0
+
 
 
 void odometroTotal(void){
@@ -92,7 +92,7 @@ void odometroParcial(void){
          atualizaOdoParcial = 0;
         
          if((B_Reset == 0)&&(trava == 0)) {
-             for(position = 5; position >= 0; position--) {
+             for(position = 5; position >= 0; position--){
                  odoParcial[position] = 0x30;    
              }
          

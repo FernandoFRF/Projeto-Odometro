@@ -3,6 +3,8 @@
 [d edition pro ]
 [d chip 18F4550 ]
 [d frameptr 4065 ]
+"15 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\ADC.c
+[v _ADCRead ADCRead `(v  1 e 1 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\abs.c
 [v _abs abs `(i  1 e 2 0 ]
 "32 C:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\awtoft.c
@@ -27,6 +29,8 @@
 [v _itoa itoa `(*.39uc  1 e 2 0 ]
 "17
 [v _utoa utoa `(*.39uc  1 e 2 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
 "8 C:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwdiv.c
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
 "8 C:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\lwmod.c
@@ -41,7 +45,7 @@
 [v ___flmul __flmul `(d  1 e 3 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"61 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_Odometro\displayLCD.c
+"61 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\displayLCD.c
 [v _Delay Delay `(v  1 e 1 0 ]
 "87
 [v _ConfiguraLCD ConfiguraLCD `(v  1 e 1 0 ]
@@ -57,22 +61,63 @@
 [v _EscreveInteiroLCD EscreveInteiroLCD `(v  1 e 1 0 ]
 "470
 [v _EscreveFraseRamLCD EscreveFraseRamLCD `(v  1 e 1 0 ]
-"5 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_Odometro\EEPROM.c
+"5 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\EEPROM.c
 [v _Init_EEPROM Init_EEPROM `(v  1 e 1 0 ]
-"22 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_Odometro\main.c
+"77 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\Fuel_Gauge.c
+[v _TensaoBateria TensaoBateria `(v  1 e 1 0 ]
+"85
+[v _ValorCombustivel ValorCombustivel `(v  1 e 1 0 ]
+"19 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\main.c
 [v _isr isr `II(v  1 e 1 0 ]
-"39
+"36
 [v _main main `(v  1 e 1 0 ]
-"55
+"52
 [v _initInterrupt initInterrupt `(v  1 e 1 0 ]
-"68
+"65
 [v _initHw initHw `(v  1 e 1 0 ]
-"96
+"93
 [v _display display `(v  1 e 1 0 ]
-"17 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_Odometro\Odometro_Total_Parcial.c
+"17 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\Odometro_Total_Parcial.c
 [v _odometroTotal odometroTotal `(v  1 e 1 0 ]
 "57
 [v _odometroParcial odometroParcial `(v  1 e 1 0 ]
+"6 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\ADC.h
+[v _valorADC valorADC `ul  1 e 4 0 ]
+"2418 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4550.h
+[v _PORTB PORTB `VEuc  1 e 1 @3969 ]
+[s S709 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+"2569
+[s S718 . 1 `uc 1 T1OSO 1 0 :1:0 
+`uc 1 T1OSI 1 0 :1:1 
+`uc 1 CCP1 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 TX 1 0 :1:6 
+`uc 1 RX 1 0 :1:7 
+]
+[s S725 . 1 `uc 1 T13CKI 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 P1A 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 CK 1 0 :1:6 
+`uc 1 DT 1 0 :1:7 
+]
+[s S732 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 CCP2 1 0 :1:1 
+`uc 1 PA1 1 0 :1:2 
+]
+[s S736 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 PA2 1 0 :1:1 
+]
+[u S739 . 1 `S709 1 . 1 0 `S718 1 . 1 0 `S725 1 . 1 0 `S732 1 . 1 0 `S736 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES739  1 e 1 @3970 ]
 [s S34 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
@@ -82,7 +127,7 @@
 `uc 1 RD6 1 0 :1:6 
 `uc 1 RD7 1 0 :1:7 
 ]
-"2699 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4550.h
+"2699
 [s S74 . 1 `uc 1 SPP0 1 0 :1:0 
 `uc 1 SPP1 1 0 :1:1 
 `uc 1 SPP2 1 0 :1:2 
@@ -285,6 +330,42 @@
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
 "6581
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
+[s S776 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_NOT_DONE 1 0 :1:1 
+]
+"6625
+[s S779 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :4:2 
+]
+[s S783 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+]
+[s S790 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 DONE 1 0 :1:1 
+]
+[s S793 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+]
+[s S796 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 NOT_DONE 1 0 :1:1 
+]
+[s S799 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+]
+[s S802 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GODONE 1 0 :1:1 
+]
+[u S805 . 1 `S776 1 . 1 0 `S779 1 . 1 0 `S783 1 . 1 0 `S790 1 . 1 0 `S793 1 . 1 0 `S796 1 . 1 0 `S799 1 . 1 0 `S802 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES805  1 e 1 @4034 ]
+"6705
+[v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
+"6711
+[v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
 "7318
 [v _T1CON T1CON `VEuc  1 e 1 @4045 ]
 "7438
@@ -322,7 +403,23 @@
 ]
 [u S246 . 1 `S224 1 . 1 0 `S233 1 . 1 0 `S242 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES246  1 e 1 @4082 ]
-"9 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_Odometro\Odometro_Total_Parcial.h
+"7 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\Fuel_Gauge.h
+[v _numeroC numeroC `uc  1 e 1 0 ]
+"8
+[v _reserva reserva `uc  1 e 1 0 ]
+"11
+[v _primeiroFiltro primeiroFiltro `uc  1 e 1 0 ]
+"13
+[v _countLed countLed `ui  1 e 2 0 ]
+"14
+[v _tempoCombustivel tempoCombustivel `ui  1 e 2 0 ]
+"16
+[v _valorADCMedia valorADCMedia `ui  1 e 2 0 ]
+"17
+[v _combArray combArray `[10]ui  1 e 20 0 ]
+"19
+[v _porcentagemTensao porcentagemTensao `l  1 e 4 0 ]
+"9 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\Odometro_Total_Parcial.h
 [v _odoTotal odoTotal `[7]uc  1 e 7 0 ]
 "10
 [v _odoParcial odoParcial `[7]uc  1 e 7 0 ]
@@ -334,12 +431,12 @@
 [v _bordaParcial bordaParcial `ui  1 e 2 0 ]
 "14
 [v _bordaTotal bordaTotal `ui  1 e 2 0 ]
-"39 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_Odometro\main.c
+"36 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"52
+"49
 } 0
-"17 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_Odometro\Odometro_Total_Parcial.c
+"17 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\Odometro_Total_Parcial.c
 [v _odometroTotal odometroTotal `(v  1 e 1 0 ]
 {
 "55
@@ -348,39 +445,39 @@
 [v _odometroParcial odometroParcial `(v  1 e 1 0 ]
 {
 "58
-[v odometroParcial@trava trava `uc  1 a 1 21 ]
+[v odometroParcial@trava trava `uc  1 a 1 7 ]
 "60
-[v odometroParcial@position position `uc  1 a 1 20 ]
+[v odometroParcial@position position `uc  1 a 1 6 ]
 "59
 [v odometroParcial@i i `uc  1 s 1 i ]
 "106
 } 0
-"55 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_Odometro\main.c
+"52 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\main.c
 [v _initInterrupt initInterrupt `(v  1 e 1 0 ]
 {
-"67
+"64
 } 0
-"68
+"65
 [v _initHw initHw `(v  1 e 1 0 ]
 {
-"94
+"91
 } 0
-"96
+"93
 [v _display display `(v  1 e 1 0 ]
 {
-"105
+"102
 } 0
-"287 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_Odometro\displayLCD.c
+"287 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\displayLCD.c
 [v _PosicaoCursorLCD PosicaoCursorLCD `(v  1 e 1 0 ]
 {
 [v PosicaoCursorLCD@linha linha `uc  1 a 1 wreg ]
 "295
-[v PosicaoCursorLCD@EnderecoLCD EnderecoLCD `uc  1 a 1 19 ]
+[v PosicaoCursorLCD@EnderecoLCD EnderecoLCD `uc  1 a 1 5 ]
 "287
 [v PosicaoCursorLCD@linha linha `uc  1 a 1 wreg ]
-[v PosicaoCursorLCD@coluna coluna `uc  1 p 1 17 ]
+[v PosicaoCursorLCD@coluna coluna `uc  1 p 1 3 ]
 "295
-[v PosicaoCursorLCD@linha linha `uc  1 a 1 18 ]
+[v PosicaoCursorLCD@linha linha `uc  1 a 1 4 ]
 "336
 } 0
 "236
@@ -389,13 +486,13 @@
 [v EnderecoCursor@endereco endereco `uc  1 a 1 wreg ]
 [v EnderecoCursor@endereco endereco `uc  1 a 1 wreg ]
 "239
-[v EnderecoCursor@endereco endereco `uc  1 a 1 16 ]
+[v EnderecoCursor@endereco endereco `uc  1 a 1 2 ]
 "273
 } 0
 "470
 [v _EscreveFraseRamLCD EscreveFraseRamLCD `(v  1 e 1 0 ]
 {
-[v EscreveFraseRamLCD@buffer buffer `*.35uc  1 p 2 17 ]
+[v EscreveFraseRamLCD@buffer buffer `*.35uc  1 p 2 3 ]
 "477
 } 0
 "348
@@ -404,15 +501,15 @@
 [v EscreveCaractereLCD@data data `uc  1 a 1 wreg ]
 [v EscreveCaractereLCD@data data `uc  1 a 1 wreg ]
 "351
-[v EscreveCaractereLCD@data data `uc  1 a 1 16 ]
+[v EscreveCaractereLCD@data data `uc  1 a 1 2 ]
 "387
 } 0
-"5 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_Odometro\EEPROM.c
+"5 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\EEPROM.c
 [v _Init_EEPROM Init_EEPROM `(v  1 e 1 0 ]
 {
 "8
 } 0
-"87 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_Odometro\displayLCD.c
+"87 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\displayLCD.c
 [v _ConfiguraLCD ConfiguraLCD `(v  1 e 1 0 ]
 {
 "169
@@ -423,19 +520,19 @@
 [v EscreveComandoLCD@cmd cmd `uc  1 a 1 wreg ]
 [v EscreveComandoLCD@cmd cmd `uc  1 a 1 wreg ]
 "182
-[v EscreveComandoLCD@cmd cmd `uc  1 a 1 16 ]
+[v EscreveComandoLCD@cmd cmd `uc  1 a 1 2 ]
 "223
 } 0
 "61
 [v _Delay Delay `(v  1 e 1 0 ]
 {
 "63
-[v Delay@Cnt2 Cnt2 `uc  1 a 1 15 ]
-[v Delay@Cnt1 Cnt1 `uc  1 a 1 14 ]
+[v Delay@Cnt2 Cnt2 `uc  1 a 1 1 ]
+[v Delay@Cnt1 Cnt1 `uc  1 a 1 0 ]
 "73
 } 0
-"22 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_Odometro\main.c
+"19 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Projeto_Odometro\main.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"36
+"33
 } 0

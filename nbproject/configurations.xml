@@ -8,6 +8,8 @@
       <itemPath>EEPROM.h</itemPath>
       <itemPath>displayLCD.h</itemPath>
       <itemPath>Odometro_Total_Parcial.h</itemPath>
+      <itemPath>Fuel_Gauge.h</itemPath>
+      <itemPath>ADC.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -20,6 +22,8 @@
       <itemPath>EEPROM.c</itemPath>
       <itemPath>Odometro_Total_Parcial.c</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>Fuel_Gauge.c</itemPath>
+      <itemPath>ADC.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

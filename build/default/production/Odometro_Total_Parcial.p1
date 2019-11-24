@@ -3531,9 +3531,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 159: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 161: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 163: extern __nonreentrant void _delay3(unsigned char);
-[; ;Config.h: 41: typedef unsigned char uint8_t;
-[; ;Config.h: 42: typedef signed char sint8_t;
-[; ;Config.h: 43: typedef unsigned int uint16_t;
+[; ;Config.h: 44: typedef unsigned char uint8_t;
+[; ;Config.h: 45: typedef signed char sint8_t;
+[; ;Config.h: 46: typedef unsigned int uint16_t;
 [; ;displayLCD.h: 191: extern void ConfiguraLCD(void);
 [; ;displayLCD.h: 201: extern void EscreveComandoLCD(unsigned char cmd);
 [; ;displayLCD.h: 214: extern void EnderecoCursor(unsigned char endereco);
@@ -3837,7 +3837,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "94
 [e $ ! && == -> . . _PORTEbits 0 0 `i -> 0 `i == -> _trava `i -> 0 `i 380  ]
 {
-[; ;Odometro_Total_Parcial.c: 95: for(position = 5; position >= 0; position--) {
+[; ;Odometro_Total_Parcial.c: 95: for(position = 5; position >= 0; position--){
 "95
 {
 [e = _position -> -> 5 `i `uc ]

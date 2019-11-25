@@ -3547,9 +3547,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 159: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 161: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 163: extern __nonreentrant void _delay3(unsigned char);
-[; ;Config.h: 41: typedef unsigned char uint8_t;
-[; ;Config.h: 42: typedef signed char sint8_t;
-[; ;Config.h: 43: typedef unsigned int uint16_t;
+[; ;Config.h: 44: typedef unsigned char uint8_t;
+[; ;Config.h: 45: typedef signed char sint8_t;
+[; ;Config.h: 46: typedef unsigned int uint16_t;
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stdlib.h: 7: typedef unsigned short wchar_t;
 [; ;stdlib.h: 15: typedef struct {

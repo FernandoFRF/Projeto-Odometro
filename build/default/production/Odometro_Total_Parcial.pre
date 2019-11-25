@@ -4737,7 +4737,7 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 41 "Config.h"
+# 44 "Config.h"
 typedef unsigned char uint8_t;
 typedef signed char sint8_t;
 typedef unsigned int uint16_t;
@@ -4871,13 +4871,14 @@ EscreveFraseRamLCD(odoParcial);
 atualizaOdoParcial = 0;
 
 if((PORTEbits.RE0 == 0)&&(trava == 0)) {
-for(position = 5; position >= 0; position--) {
-odoParcial[position] = 0x30;
-}
+odoParcial[0] = 0x30;
+odoParcial[1] = 0x30;
+odoParcial[2] = 0x30;
+odoParcial[3] = 0x30;
+odoParcial[5] = 0x30;
 
 trava = 1;
-
-} else if((PORTEbits.RE0 == 1)&&(trava == 1)){
+} else if((PORTEbits.RE0 == 1) && (trava == 1)){
 trava = 0;
 }
 }

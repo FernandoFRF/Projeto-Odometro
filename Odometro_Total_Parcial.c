@@ -87,20 +87,21 @@ void odometroParcial(void){
                     }
                 }
             }
-         PosicaoCursorLCD(2, 7);
-         EscreveFraseRamLCD(odoParcial);
-         atualizaOdoParcial = 0;
+            PosicaoCursorLCD(2, 7);
+            EscreveFraseRamLCD(odoParcial);
+            atualizaOdoParcial = 0;
         
-         if((B_Reset == 0)&&(trava == 0)) {
-             for(position = 5; position >= 0; position--){
-                 odoParcial[position] = 0x30;    
-             }
+            if((B_Reset == 0)&&(trava == 0)) {
+                odoParcial[0] = 0x30;
+                odoParcial[1] = 0x30;  
+                odoParcial[2] = 0x30;  
+                odoParcial[3] = 0x30;
+                odoParcial[5] = 0x30;  
          
-          trava = 1;
-        
-         } else if((B_Reset == 1)&&(trava == 1)){ 
-             trava  = 0; 
-           }
+                trava = 1;
+            } else if((B_Reset == 1) && (trava == 1)){ 
+                trava  = 0; 
+              }
         }
     }
 }

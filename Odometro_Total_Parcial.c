@@ -18,6 +18,11 @@ void odometroTotal(void){
     
     if (atualizaOdoTotal)
     {
+        for(unsigned char i = 0x00, j = 0x05; i < 0x06, j > 0x06; i++, j--){
+            unsigned char memoria = 0x10;
+            odoTotal[j] = EEPROM_ReadByte (memoria + i);   
+        }
+        
         odoTotal[5]++;
         if (odoTotal[5] > 0x39)
         {
@@ -48,6 +53,12 @@ void odometroTotal(void){
                 }
             }
         }
+        
+        unsigned char memoria = 0x10;
+        for (unsigned char i = 0x00, j = 0x05; i < 0x05, j > 0x00; i++, j--){
+            EEPROM_WriteByte(memoria + i, odoTotal[j]);
+        }
+        
         PosicaoCursorLCD(1, 7);
         EscreveFraseRamLCD(odoTotal);
         atualizaOdoTotal = 0;
@@ -55,6 +66,7 @@ void odometroTotal(void){
 }
 
 void odometroParcial(void){
+    
     unsigned char trava = 0;
     static unsigned char i;
     char position = 0;
@@ -81,26 +93,31 @@ void odometroParcial(void){
                         if (odoParcial[0] > 0x39){
                             for (i = 0; i <= 3; i++){
                             odoParcial[i] = '0';
-                            odoParcial[5] = '0'; // zera todo contador parcial;
+                            
+                            //do nothing
                             }
+                        }
                         }
                     }
                 }
             }
-         PosicaoCursorLCD(2, 7);
-         EscreveFraseRamLCD(odoParcial);
-         atualizaOdoParcial = 0;
+            PosicaoCursorLCD(2, 7);
+            EscreveFraseRamLCD(odoParcial);
+            atualizaOdoParcial = 0;
         
-         if((B_Reset == 0)&&(trava == 0)) {
-             for(position = 5; position >= 0; position--){
-                 odoParcial[position] = 0x30;    
-             }
          
-          trava = 1;
+    }
+    if((B_Reset == 0)&&(trava == 0)) {
+            odoParcial[0] = 0x30;
+            odoParcial[1] = 0x30;
+            odoParcial[2] = 0x30;
+            odoParcial[3] = 0x30;
+            odoParcial[5] = 0x30;
+            
+            
+            trava = 1;
         
-         } else if((B_Reset == 1)&&(trava == 1)){ 
+     } else if((B_Reset == 1)&&(trava == 1)){ 
              trava  = 0; 
            }
-        }
-    }
 }

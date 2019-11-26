@@ -81,7 +81,6 @@ void odometroParcial(void){
                         if (odoParcial[0] > 0x39){
                             for (i = 0; i <= 3; i++){
                             odoParcial[i] = '0';
-                            odoParcial[5] = '0'; // zera todo contador parcial;
                             }
                         }
                     }

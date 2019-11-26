@@ -1,5 +1,5 @@
 
-# 1 "Odometro_Total_Parcial.c"
+# 1 "Fuel_Gauge.c"
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -4772,139 +4772,112 @@ extern void EscreveFraseLCD(const char *buffer);
 # 312
 extern void CriaCaractereLCD(unsigned char endereco, const char *buffer);
 
-# 7 "EEPROM.h"
-void Init_EEPROM (void);
+# 7 "Fuel_Gauge.h"
+unsigned char numeroC = 0;
+unsigned char reserva = 0;
 
 
-unsigned char EEPROM_ReadByte (unsigned char MemoryAddress);
+unsigned char primeiroFiltro = 0;
 
+unsigned int countLed = 0;
+unsigned int tempoCombustivel = 0;
 
-void EEPROM_WriteByte(unsigned char WriteMemoryAddress, unsigned char WriteData);
+unsigned int valorADCMedia = 0;
+unsigned int combArray[10];
+unsigned int valorTensao = 0;
+long porcentagemTensao = 0;
 
-# 6 "Odometro_Total_Parcial.h"
-void odometroTotal (void);
-void odometroParcial (void);
+void Combustivel(void);
+void TensaoBateria(void);
+void ValorCombustivel(void);
 
-unsigned char odoTotal[] = "000000";
-unsigned char odoParcial[] = "0000,0";
-unsigned int atualizaOdoParcial;
-unsigned int atualizaOdoTotal;
-unsigned int bordaParcial = 0;
-unsigned int bordaTotal = 0;
+# 6 "ADC.h"
+unsigned long valorADC = 0;
 
-# 17 "Odometro_Total_Parcial.c"
-void odometroTotal(void){
+void ADCRead(void);
 
-if (atualizaOdoTotal)
-{
-for(unsigned char i = 0x00, j = 0x05; i < 0x06, j > 0x06; i++, j--){
-unsigned char memoria = 0x10;
-odoTotal[j] = EEPROM_ReadByte (memoria + i);
+# 15 "Fuel_Gauge.c"
+void Combustivel(void) {
+while(primeiroFiltro == 1) {
+for(primeiroFiltro = 0; primeiroFiltro <= 9; primeiroFiltro ++) {
+TensaoBateria();
+ValorCombustivel();
 }
 
-odoTotal[5]++;
-if (odoTotal[5] > 0x39)
-{
-odoTotal[5] = 0x30;
-odoTotal[4]++;
-if (odoTotal[4] > 0x39)
-{
-odoTotal[4] = 0x30;
-odoTotal[3]++;
-if (odoTotal[3] > 0x39)
-{
-odoTotal[3] = 0x30;
-odoTotal[2]++;
-if (odoTotal[2] > 0x39)
-{
-odoTotal[2] = 0x30;
-odoTotal[1]++;
-if (odoTotal[1] > 0x39)
-{
-odoTotal[1] = 0x30;
-odoTotal[0]++;
-if (odoTotal[0] > 0x39)
-{
-
-}
-}
-}
-}
-}
+primeiroFiltro = 0;
 }
 
-unsigned char memoria = 0x10;
-for (unsigned char i = 0x00, j = 0x05; i < 0x05, j > 0x00; i++, j--){
-EEPROM_WriteByte(memoria + i, odoTotal[j]);
+if(tempoCombustivel >= 500) {
+TensaoBateria();
+ValorCombustivel();
+valorADCMedia = (combArray[0] + combArray[1] + combArray[2] + combArray[3] + combArray[4] + combArray[5] + combArray[6] + combArray[7] + combArray[8] + combArray[9]) / 10;
+
+if(valorADCMedia <= 50) {
+PORTB = 0b00000000;
+}
+if(valorADCMedia > 50 && valorADCMedia <= 85) {
+PORTB = 0b010000000;
+}
+if(valorADCMedia > 85 && valorADCMedia <= 120) {
+PORTB = 0b11000000;
+}
+if(valorADCMedia > 120 && valorADCMedia<= 155) {
+PORTB = 0b11100000;
+}
+if(valorADCMedia > 155 && valorADCMedia <= 190) {
+PORTB = 0b11110000;
+}
+if(valorADCMedia > 190 && valorADCMedia <= 225) {
+PORTB = 0b11111000;
+}
+if(valorADCMedia > 225 && valorADCMedia <= 268) {
+PORTB = 0b11111100;
+}
+if(valorADCMedia > 268 && valorADCMedia <= 370) {
+PORTB = 0b11111110;
+}
+if(valorADCMedia > 370) {
+PORTB = 0b11111111;
+}
+if(valorADCMedia> 345) {
+reserva = 1;
+}
+else {
+reserva = 0;
+PORTCbits.RC0 = 1;
 }
 
-PosicaoCursorLCD(1, 7);
-EscreveFraseRamLCD(odoTotal);
-atualizaOdoTotal = 0;
-}
+tempoCombustivel = 0;
+
 }
 
-void odometroParcial(void){
-
-unsigned char trava = 0;
-static unsigned char i;
-char position = 0;
-
-if (atualizaOdoParcial){
-odoParcial[5]++;
-
-if (odoParcial[5] > 0x39){
-odoParcial[5] = 0x30;
-odoParcial[3]++;
-
-if (odoParcial[3] > 0x39){
-odoParcial[3] = 0x30;
-odoParcial[2]++;
-
-if (odoParcial[2] > 0x39){
-odoParcial[2] = 0x30;
-odoParcial[1]++;
-
-if (odoParcial[1] > 0x39){
-odoParcial[1] = 0x30;
-odoParcial[0]++;
-
-if (odoParcial[0] > 0x39){
-for (i = 0; i <= 3; i++){
-odoParcial[i] = '0';
-<<<<<<< HEAD
-=======
+if(countLed >= 1000 && reserva ==1) {
+PORTCbits.RC0 = ~PORTCbits.RC0;
+countLed = 0;
+}
 
 
 }
->>>>>>> Fuel_Gauge_Implementation
-}
-}
-}
-}
-}
-PosicaoCursorLCD(2, 7);
-EscreveFraseRamLCD(odoParcial);
-atualizaOdoParcial = 0;
 
-<<<<<<< HEAD
-=======
+void TensaoBateria() {
+ADCON0bits.CHS = 1 ;
+ADCRead();
 
+
+porcentagemTensao = 333 * valorADC;
 }
->>>>>>> Fuel_Gauge_Implementation
-if((PORTEbits.RE0 == 0)&&(trava == 0)) {
-odoParcial[0] = 0x30;
-odoParcial[1] = 0x30;
-odoParcial[2] = 0x30;
-odoParcial[3] = 0x30;
-odoParcial[5] = 0x30;
-<<<<<<< HEAD
-=======
 
->>>>>>> Fuel_Gauge_Implementation
+void ValorCombustivel() {
+ADCON0bits.CHS = 0;
+ADCRead();
 
-trava = 1;
-} else if((PORTEbits.RE0 == 1) && (trava == 1)){
-trava = 0;
+valorADC = ((valorADC * 100000) / porcentagemTensao);
+
+combArray[numeroC] = valorADC;
+numeroC ++;
+
+if(numeroC == 10){
+numeroC = 0;
 }
+
 }

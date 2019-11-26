@@ -9,6 +9,8 @@
 #include "displayLCD.h"
 #include "EEPROM.h"  
 #include "Odometro_Total_Parcial.h"
+#include "Fuel_Gauge.h"
+#include "ADC.h"
 
 /*Declaração de Prototipos de Funções*/
 
@@ -16,7 +18,16 @@ void initInterrupt(void);
 void initHw(void);
 void display(void);
 
-void interrupt isr(void){ 
+void interrupt isr(void){
+    if(INTCONbits.TMR0IE && INTCONbits.TMR0IF) {   
+        T0IF = 0;
+        INTCONbits.TMR0IF = 0;   
+        TMR0 = 69; 
+
+        tempoCombustivel ++;
+        countLed ++;  
+     }
+                  
     if ((PIR1bits.CCP1IF) && (PIE1bits.CCP1IE)){
         bordaParcial++;
         bordaTotal++;
@@ -44,7 +55,7 @@ void main(void){
     {
         odometroTotal();
         odometroParcial();
-        //resetodoparcial
+        Combustivel();
     }
 }
 

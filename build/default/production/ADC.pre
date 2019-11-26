@@ -1,5 +1,5 @@
 
-# 1 "Odometro_Total_Parcial.c"
+# 1 "ADC.c"
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -4772,139 +4772,37 @@ extern void EscreveFraseLCD(const char *buffer);
 # 312
 extern void CriaCaractereLCD(unsigned char endereco, const char *buffer);
 
-# 7 "EEPROM.h"
-void Init_EEPROM (void);
+# 7 "Fuel_Gauge.h"
+unsigned char numeroC = 0;
+unsigned char reserva = 0;
 
 
-unsigned char EEPROM_ReadByte (unsigned char MemoryAddress);
+unsigned char primeiroFiltro = 0;
 
+unsigned int countLed = 0;
+unsigned int tempoCombustivel = 0;
 
-void EEPROM_WriteByte(unsigned char WriteMemoryAddress, unsigned char WriteData);
+unsigned int valorADCMedia = 0;
+unsigned int combArray[10];
+unsigned int valorTensao = 0;
+long porcentagemTensao = 0;
 
-# 6 "Odometro_Total_Parcial.h"
-void odometroTotal (void);
-void odometroParcial (void);
+void Combustivel(void);
+void TensaoBateria(void);
+void ValorCombustivel(void);
 
-unsigned char odoTotal[] = "000000";
-unsigned char odoParcial[] = "0000,0";
-unsigned int atualizaOdoParcial;
-unsigned int atualizaOdoTotal;
-unsigned int bordaParcial = 0;
-unsigned int bordaTotal = 0;
+# 6 "ADC.h"
+unsigned long valorADC = 0;
 
-# 17 "Odometro_Total_Parcial.c"
-void odometroTotal(void){
+void ADCRead(void);
 
-if (atualizaOdoTotal)
+# 15 "ADC.c"
+void ADCRead(void)
 {
-for(unsigned char i = 0x00, j = 0x05; i < 0x06, j > 0x06; i++, j--){
-unsigned char memoria = 0x10;
-odoTotal[j] = EEPROM_ReadByte (memoria + i);
-}
-
-odoTotal[5]++;
-if (odoTotal[5] > 0x39)
+ADCON0bits.GO = 1;
+_delay((unsigned long)((10)*(48000000/4000.0)));
+if(ADCON0bits.GO_DONE == 0)
 {
-odoTotal[5] = 0x30;
-odoTotal[4]++;
-if (odoTotal[4] > 0x39)
-{
-odoTotal[4] = 0x30;
-odoTotal[3]++;
-if (odoTotal[3] > 0x39)
-{
-odoTotal[3] = 0x30;
-odoTotal[2]++;
-if (odoTotal[2] > 0x39)
-{
-odoTotal[2] = 0x30;
-odoTotal[1]++;
-if (odoTotal[1] > 0x39)
-{
-odoTotal[1] = 0x30;
-odoTotal[0]++;
-if (odoTotal[0] > 0x39)
-{
-
-}
-}
-}
-}
-}
-}
-
-unsigned char memoria = 0x10;
-for (unsigned char i = 0x00, j = 0x05; i < 0x05, j > 0x00; i++, j--){
-EEPROM_WriteByte(memoria + i, odoTotal[j]);
-}
-
-PosicaoCursorLCD(1, 7);
-EscreveFraseRamLCD(odoTotal);
-atualizaOdoTotal = 0;
-}
-}
-
-void odometroParcial(void){
-
-unsigned char trava = 0;
-static unsigned char i;
-char position = 0;
-
-if (atualizaOdoParcial){
-odoParcial[5]++;
-
-if (odoParcial[5] > 0x39){
-odoParcial[5] = 0x30;
-odoParcial[3]++;
-
-if (odoParcial[3] > 0x39){
-odoParcial[3] = 0x30;
-odoParcial[2]++;
-
-if (odoParcial[2] > 0x39){
-odoParcial[2] = 0x30;
-odoParcial[1]++;
-
-if (odoParcial[1] > 0x39){
-odoParcial[1] = 0x30;
-odoParcial[0]++;
-
-if (odoParcial[0] > 0x39){
-for (i = 0; i <= 3; i++){
-odoParcial[i] = '0';
-<<<<<<< HEAD
-=======
-
-
-}
->>>>>>> Fuel_Gauge_Implementation
-}
-}
-}
-}
-}
-PosicaoCursorLCD(2, 7);
-EscreveFraseRamLCD(odoParcial);
-atualizaOdoParcial = 0;
-
-<<<<<<< HEAD
-=======
-
-}
->>>>>>> Fuel_Gauge_Implementation
-if((PORTEbits.RE0 == 0)&&(trava == 0)) {
-odoParcial[0] = 0x30;
-odoParcial[1] = 0x30;
-odoParcial[2] = 0x30;
-odoParcial[3] = 0x30;
-odoParcial[5] = 0x30;
-<<<<<<< HEAD
-=======
-
->>>>>>> Fuel_Gauge_Implementation
-
-trava = 1;
-} else if((PORTEbits.RE0 == 1) && (trava == 1)){
-trava = 0;
+valorADC = (ADRESH<<8)+ADRESL;
 }
 }

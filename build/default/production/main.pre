@@ -4792,9 +4792,6 @@ unsigned int atualizaOdoTotal;
 unsigned int bordaParcial = 0;
 unsigned int bordaTotal = 0;
 
-<<<<<<< HEAD
-# 15 "main.c"
-=======
 # 7 "Fuel_Gauge.h"
 unsigned char numeroC = 0;
 unsigned char reserva = 0;
@@ -4820,7 +4817,6 @@ unsigned long valorADC = 0;
 void ADCRead(void);
 
 # 17 "main.c"
->>>>>>> Fuel_Gauge_Implementation
 void initInterrupt(void);
 void initHw(void);
 void display(void);

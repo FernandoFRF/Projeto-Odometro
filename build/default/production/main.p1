@@ -24,18 +24,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
 "191 displayLCD.h
 [v _ConfiguraLCD `(v ~T0 @X0 0 ef ]
-"15 main.c
+"17 main.c
 [v _initInterrupt `(v ~T0 @X0 0 ef ]
-"16
+"18
 [v _initHw `(v ~T0 @X0 0 ef ]
 "7 EEPROM.h
 [v _Init_EEPROM `(v ~T0 @X0 0 ef ]
-"17 main.c
+"19 main.c
 [v _display `(v ~T0 @X0 0 ef ]
 "6 Odometro_Total_Parcial.h
 [v _odometroTotal `(v ~T0 @X0 0 ef ]
 "7
 [v _odometroParcial `(v ~T0 @X0 0 ef ]
+"21 Fuel_Gauge.h
+[v _Combustivel `(v ~T0 @X0 0 ef ]
 "8444 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4550.h
 [v _INTCON `Vuc ~T0 @X0 0 e@4082 ]
 "8368
@@ -3728,251 +3730,315 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 0 `i `ui
 ]
 [; ;Odometro_Total_Parcial.h: 14: unsigned int bordaTotal = 0;
-[; ;main.c: 15: void initInterrupt(void);
-[; ;main.c: 16: void initHw(void);
-[; ;main.c: 17: void display(void);
-[v F3837 `(v ~T0 @X0 1 tf ]
-"19 main.c
-[v _isr `IF3837 ~T0 @X0 1 e ]
+"7 Fuel_Gauge.h
+[v _numeroC `uc ~T0 @X0 1 e ]
+[i _numeroC
+-> -> 0 `i `uc
+]
+[; ;Fuel_Gauge.h: 7: unsigned char numeroC = 0;
+"8
+[v _reserva `uc ~T0 @X0 1 e ]
+[i _reserva
+-> -> 0 `i `uc
+]
+[; ;Fuel_Gauge.h: 8: unsigned char reserva = 0;
+"11
+[v _primeiroFiltro `uc ~T0 @X0 1 e ]
+[i _primeiroFiltro
+-> -> 0 `i `uc
+]
+[; ;Fuel_Gauge.h: 11: unsigned char primeiroFiltro = 0;
+"13
+[v _countLed `ui ~T0 @X0 1 e ]
+[i _countLed
+-> -> 0 `i `ui
+]
+[; ;Fuel_Gauge.h: 13: unsigned int countLed = 0;
+"14
+[v _tempoCombustivel `ui ~T0 @X0 1 e ]
+[i _tempoCombustivel
+-> -> 0 `i `ui
+]
+[; ;Fuel_Gauge.h: 14: unsigned int tempoCombustivel = 0;
+"16
+[v _valorADCMedia `ui ~T0 @X0 1 e ]
+[i _valorADCMedia
+-> -> 0 `i `ui
+]
+[; ;Fuel_Gauge.h: 16: unsigned int valorADCMedia = 0;
+"17
+[v _combArray `ui ~T0 @X0 -> 10 `i e ]
+[; ;Fuel_Gauge.h: 17: unsigned int combArray[10];
+"18
+[v _valorTensao `ui ~T0 @X0 1 e ]
+[i _valorTensao
+-> -> 0 `i `ui
+]
+[; ;Fuel_Gauge.h: 18: unsigned int valorTensao = 0;
+"19
+[v _porcentagemTensao `l ~T0 @X0 1 e ]
+[i _porcentagemTensao
+-> -> 0 `i `l
+]
+[; ;Fuel_Gauge.h: 19: long porcentagemTensao = 0;
+[; ;Fuel_Gauge.h: 21: void Combustivel(void);
+[; ;Fuel_Gauge.h: 22: void TensaoBateria(void);
+[; ;Fuel_Gauge.h: 23: void ValorCombustivel(void);
+"6 ADC.h
+[v _valorADC `ul ~T0 @X0 1 e ]
+[i _valorADC
+-> -> -> 0 `i `l `ul
+]
+[; ;ADC.h: 6: unsigned long valorADC = 0;
+[; ;ADC.h: 8: void ADCRead(void);
+[; ;main.c: 17: void initInterrupt(void);
+[; ;main.c: 18: void initHw(void);
+[; ;main.c: 19: void display(void);
+[v F3855 `(v ~T0 @X0 1 tf ]
+"21 main.c
+[v _isr `IF3855 ~T0 @X0 1 e ]
 {
-[; ;main.c: 19: void interrupt isr(void){
+[; ;main.c: 21: void interrupt isr(void){
 [e :U _isr ]
 [f ]
-[; ;main.c: 20: if ((PIR1bits.CCP1IF) && (PIE1bits.CCP1IE)){
-"20
+[; ;main.c: 22: if ((PIR1bits.CCP1IF) && (PIE1bits.CCP1IE)){
+"22
 [e $ ! && != -> . . _PIR1bits 0 2 `i -> -> -> 0 `i `Vuc `i != -> . . _PIE1bits 0 2 `i -> -> -> 0 `i `Vuc `i 363  ]
 {
-[; ;main.c: 21: bordaParcial++;
-"21
-[e ++ _bordaParcial -> -> 1 `i `ui ]
-[; ;main.c: 22: bordaTotal++;
-"22
-[e ++ _bordaTotal -> -> 1 `i `ui ]
-[; ;main.c: 23: if (bordaParcial == 500){
+[; ;main.c: 23: bordaParcial++;
 "23
+[e ++ _bordaParcial -> -> 1 `i `ui ]
+[; ;main.c: 24: bordaTotal++;
+"24
+[e ++ _bordaTotal -> -> 1 `i `ui ]
+[; ;main.c: 25: if (bordaParcial == 500){
+"25
 [e $ ! == _bordaParcial -> -> 500 `i `ui 364  ]
 {
-[; ;main.c: 24: atualizaOdoParcial = 1;
-"24
-[e = _atualizaOdoParcial -> -> 1 `i `ui ]
-[; ;main.c: 25: bordaParcial = 0;
-"25
-[e = _bordaParcial -> -> 0 `i `ui ]
+[; ;main.c: 26: atualizaOdoParcial = 1;
 "26
+[e = _atualizaOdoParcial -> -> 1 `i `ui ]
+[; ;main.c: 27: bordaParcial = 0;
+"27
+[e = _bordaParcial -> -> 0 `i `ui ]
+"28
 }
 [e :U 364 ]
-[; ;main.c: 26: }
-[; ;main.c: 27: if (bordaTotal == 5000){
-"27
+[; ;main.c: 28: }
+[; ;main.c: 29: if (bordaTotal == 5000){
+"29
 [e $ ! == _bordaTotal -> -> 5000 `i `ui 365  ]
 {
-[; ;main.c: 28: atualizaOdoTotal = 1;
-"28
-[e = _atualizaOdoTotal -> -> 1 `i `ui ]
-[; ;main.c: 29: bordaTotal = 0;
-"29
-[e = _bordaTotal -> -> 0 `i `ui ]
+[; ;main.c: 30: atualizaOdoTotal = 1;
 "30
-}
-[e :U 365 ]
-[; ;main.c: 30: }
-[; ;main.c: 31: PIR1bits.CCP1IF = 0;
+[e = _atualizaOdoTotal -> -> 1 `i `ui ]
+[; ;main.c: 31: bordaTotal = 0;
 "31
-[e = . . _PIR1bits 0 2 -> -> 0 `i `uc ]
+[e = _bordaTotal -> -> 0 `i `ui ]
 "32
 }
-[e :U 363 ]
+[e :U 365 ]
 [; ;main.c: 32: }
-[; ;main.c: 33: }
+[; ;main.c: 33: PIR1bits.CCP1IF = 0;
 "33
+[e = . . _PIR1bits 0 2 -> -> 0 `i `uc ]
+"34
+}
+[e :U 363 ]
+[; ;main.c: 34: }
+[; ;main.c: 35: }
+"35
 [e :UE 362 ]
 }
-"36
+"38
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 36: void main(void){
+[; ;main.c: 38: void main(void){
 [e :U _main ]
 [f ]
-[; ;main.c: 37: ConfiguraLCD();
-"37
-[e ( _ConfiguraLCD ..  ]
-[; ;main.c: 38: initInterrupt();
-"38
-[e ( _initInterrupt ..  ]
-[; ;main.c: 39: initHw();
+[; ;main.c: 39: ConfiguraLCD();
 "39
-[e ( _initHw ..  ]
-[; ;main.c: 40: Init_EEPROM();
+[e ( _ConfiguraLCD ..  ]
+[; ;main.c: 40: initInterrupt();
 "40
-[e ( _Init_EEPROM ..  ]
-[; ;main.c: 41: display();
+[e ( _initInterrupt ..  ]
+[; ;main.c: 41: initHw();
 "41
-[e ( _display ..  ]
-[; ;main.c: 43: while (1)
+[e ( _initHw ..  ]
+[; ;main.c: 42: Init_EEPROM();
+"42
+[e ( _Init_EEPROM ..  ]
+[; ;main.c: 43: display();
 "43
-[e :U 368 ]
-[; ;main.c: 44: {
-"44
-{
-[; ;main.c: 45: odometroTotal();
+[e ( _display ..  ]
+[; ;main.c: 45: while (1)
 "45
-[e ( _odometroTotal ..  ]
-[; ;main.c: 46: odometroParcial();
+[e :U 368 ]
+[; ;main.c: 46: {
 "46
-[e ( _odometroParcial ..  ]
+{
+[; ;main.c: 47: odometroTotal();
+"47
+[e ( _odometroTotal ..  ]
+[; ;main.c: 48: odometroParcial();
 "48
+[e ( _odometroParcial ..  ]
+[; ;main.c: 50: Combustivel();
+"50
+[e ( _Combustivel ..  ]
+"51
 }
 [e :U 367 ]
-"43
+"45
 [e $U 368  ]
 [e :U 369 ]
-[; ;main.c: 48: }
-[; ;main.c: 49: }
-"49
+[; ;main.c: 51: }
+[; ;main.c: 52: }
+"52
 [e :UE 366 ]
 }
-"52
+"55
 [v _initInterrupt `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 52: void initInterrupt(void){
+[; ;main.c: 55: void initInterrupt(void){
 [e :U _initInterrupt ]
 [f ]
-[; ;main.c: 53: INTCON = 0b11100000;
-"53
-[e = _INTCON -> -> 224 `i `uc ]
-[; ;main.c: 54: INTCON2 = 0b10000000;
-"54
-[e = _INTCON2 -> -> 128 `i `uc ]
-[; ;main.c: 55: INTCON3 = 0b00000000;
-"55
-[e = _INTCON3 -> -> 0 `i `uc ]
-[; ;main.c: 56: CCP1CON = 0b00000101;
+[; ;main.c: 56: INTCON = 0b11100000;
 "56
-[e = _CCP1CON -> -> 5 `i `uc ]
-[; ;main.c: 57: PIR1 = 0b00000000;
+[e = _INTCON -> -> 224 `i `uc ]
+[; ;main.c: 57: INTCON2 = 0b10000000;
 "57
-[e = _PIR1 -> -> 0 `i `uc ]
-[; ;main.c: 58: PIR2 = 0b00000000;
+[e = _INTCON2 -> -> 128 `i `uc ]
+[; ;main.c: 58: INTCON3 = 0b00000000;
 "58
-[e = _PIR2 -> -> 0 `i `uc ]
-[; ;main.c: 59: PIE1 = 0b00000100;
+[e = _INTCON3 -> -> 0 `i `uc ]
+[; ;main.c: 59: CCP1CON = 0b00000101;
 "59
-[e = _PIE1 -> -> 4 `i `uc ]
-[; ;main.c: 60: PIE2 = 0b00000000;
+[e = _CCP1CON -> -> 5 `i `uc ]
+[; ;main.c: 60: PIR1 = 0b00000000;
 "60
-[e = _PIE2 -> -> 0 `i `uc ]
-[; ;main.c: 61: IPR1 = 0b00000000;
+[e = _PIR1 -> -> 0 `i `uc ]
+[; ;main.c: 61: PIR2 = 0b00000000;
 "61
-[e = _IPR1 -> -> 0 `i `uc ]
-[; ;main.c: 62: IPR2 = 0b00000000;
+[e = _PIR2 -> -> 0 `i `uc ]
+[; ;main.c: 62: PIE1 = 0b00000100;
 "62
-[e = _IPR2 -> -> 0 `i `uc ]
-[; ;main.c: 63: RCON = 0b00000000;
+[e = _PIE1 -> -> 4 `i `uc ]
+[; ;main.c: 63: PIE2 = 0b00000000;
 "63
-[e = _RCON -> -> 0 `i `uc ]
-[; ;main.c: 64: }
+[e = _PIE2 -> -> 0 `i `uc ]
+[; ;main.c: 64: IPR1 = 0b00000000;
 "64
+[e = _IPR1 -> -> 0 `i `uc ]
+[; ;main.c: 65: IPR2 = 0b00000000;
+"65
+[e = _IPR2 -> -> 0 `i `uc ]
+[; ;main.c: 66: RCON = 0b00000000;
+"66
+[e = _RCON -> -> 0 `i `uc ]
+[; ;main.c: 67: }
+"67
 [e :UE 370 ]
 }
-"65
+"68
 [v _initHw `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 65: void initHw(void){
+[; ;main.c: 68: void initHw(void){
 [e :U _initHw ]
 [f ]
-[; ;main.c: 67: TRISA = 0x00;
-"67
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;main.c: 68: TRISB = 0x00;
-"68
-[e = _TRISB -> -> 0 `i `uc ]
-[; ;main.c: 69: TRISC = 0x00;
-"69
-[e = _TRISC -> -> 0 `i `uc ]
-[; ;main.c: 70: TRISCbits.RC2 = 1;
+[; ;main.c: 70: TRISA = 0x00;
 "70
-[e = . . _TRISCbits 1 2 -> -> 1 `i `uc ]
-[; ;main.c: 71: TRISD = 0x00;
+[e = _TRISA -> -> 0 `i `uc ]
+[; ;main.c: 71: TRISB = 0x00;
 "71
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;main.c: 72: TRISE = 0x0F;
+[e = _TRISB -> -> 0 `i `uc ]
+[; ;main.c: 72: TRISC = 0x00;
 "72
-[e = _TRISE -> -> 15 `i `uc ]
-[; ;main.c: 74: ADCON0 = 0b00000001;
+[e = _TRISC -> -> 0 `i `uc ]
+[; ;main.c: 73: TRISCbits.RC2 = 1;
+"73
+[e = . . _TRISCbits 1 2 -> -> 1 `i `uc ]
+[; ;main.c: 74: TRISD = 0x00;
 "74
-[e = _ADCON0 -> -> 1 `i `uc ]
-[; ;main.c: 75: ADCON1 = 0b00001101;
+[e = _TRISD -> -> 0 `i `uc ]
+[; ;main.c: 75: TRISE = 0x0F;
 "75
-[e = _ADCON1 -> -> 13 `i `uc ]
-[; ;main.c: 76: ADCON2 = 0b10000100;
-"76
-[e = _ADCON2 -> -> 132 `i `uc ]
-[; ;main.c: 78: PORTEbits.RE0 = 0;
+[e = _TRISE -> -> 15 `i `uc ]
+[; ;main.c: 77: ADCON0 = 0b00000001;
+"77
+[e = _ADCON0 -> -> 1 `i `uc ]
+[; ;main.c: 78: ADCON1 = 0b00001101;
 "78
-[e = . . _PORTEbits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 81: LATA = 0x00;
+[e = _ADCON1 -> -> 13 `i `uc ]
+[; ;main.c: 79: ADCON2 = 0b10000100;
+"79
+[e = _ADCON2 -> -> 132 `i `uc ]
+[; ;main.c: 81: PORTEbits.RE0 = 0;
 "81
+[e = . . _PORTEbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 84: LATA = 0x00;
+"84
 [e = _LATA -> -> 0 `i `uc ]
-[; ;main.c: 82: LATB = 0x00;
-"82
-[e = _LATB -> -> 0 `i `uc ]
-[; ;main.c: 83: LATD = 0x00;
-"83
-[e = _LATD -> -> 0 `i `uc ]
-[; ;main.c: 85: T0CON = 0b01000101;
+[; ;main.c: 85: LATB = 0x00;
 "85
-[e = _T0CON -> -> 69 `i `uc ]
-[; ;main.c: 86: CCP1CON = 0b00000101;
+[e = _LATB -> -> 0 `i `uc ]
+[; ;main.c: 86: LATD = 0x00;
 "86
-[e = _CCP1CON -> -> 5 `i `uc ]
-[; ;main.c: 87: T1CON = 0b01000100;
-"87
-[e = _T1CON -> -> 68 `i `uc ]
-[; ;main.c: 88: T3CONbits.T3CCP1 = 0;
+[e = _LATD -> -> 0 `i `uc ]
+[; ;main.c: 88: T0CON = 0b01000101;
 "88
-[e = . . _T3CONbits 1 3 -> -> 0 `i `uc ]
-[; ;main.c: 89: INTCONbits.GIE = 1;
+[e = _T0CON -> -> 69 `i `uc ]
+[; ;main.c: 89: CCP1CON = 0b00000101;
 "89
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 90: INTCONbits.PEIE = 1;
+[e = _CCP1CON -> -> 5 `i `uc ]
+[; ;main.c: 90: T1CON = 0b01000100;
 "90
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 91: }
+[e = _T1CON -> -> 68 `i `uc ]
+[; ;main.c: 91: T3CONbits.T3CCP1 = 0;
 "91
+[e = . . _T3CONbits 1 3 -> -> 0 `i `uc ]
+[; ;main.c: 92: INTCONbits.GIE = 1;
+"92
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+[; ;main.c: 93: INTCONbits.PEIE = 1;
+"93
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+[; ;main.c: 94: }
+"94
 [e :UE 371 ]
 }
-"93
+"96
 [v _display `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 93: void display(void){
+[; ;main.c: 96: void display(void){
 [e :U _display ]
 [f ]
-[; ;main.c: 94: PosicaoCursorLCD(1, 7);
-"94
-[e ( _PosicaoCursorLCD (2 , -> -> 1 `i `uc -> -> 7 `i `uc ]
-[; ;main.c: 95: EscreveFraseRamLCD(odoTotal);
-"95
-[e ( _EscreveFraseRamLCD (1 &U _odoTotal ]
-[; ;main.c: 96: PosicaoCursorLCD(2, 7);
-"96
-[e ( _PosicaoCursorLCD (2 , -> -> 2 `i `uc -> -> 7 `i `uc ]
-[; ;main.c: 97: EscreveFraseRamLCD(odoParcial);
+[; ;main.c: 97: PosicaoCursorLCD(1, 7);
 "97
-[e ( _EscreveFraseRamLCD (1 &U _odoParcial ]
-[; ;main.c: 98: PosicaoCursorLCD(1, 14);
+[e ( _PosicaoCursorLCD (2 , -> -> 1 `i `uc -> -> 7 `i `uc ]
+[; ;main.c: 98: EscreveFraseRamLCD(odoTotal);
 "98
-[e ( _PosicaoCursorLCD (2 , -> -> 1 `i `uc -> -> 14 `i `uc ]
-[; ;main.c: 99: EscreveFraseRamLCD("Km");
+[e ( _EscreveFraseRamLCD (1 &U _odoTotal ]
+[; ;main.c: 99: PosicaoCursorLCD(2, 7);
 "99
-[e ( _EscreveFraseRamLCD (1 -> :s 1C `*uc ]
-[; ;main.c: 100: PosicaoCursorLCD(2, 14);
+[e ( _PosicaoCursorLCD (2 , -> -> 2 `i `uc -> -> 7 `i `uc ]
+[; ;main.c: 100: EscreveFraseRamLCD(odoParcial);
 "100
-[e ( _PosicaoCursorLCD (2 , -> -> 2 `i `uc -> -> 14 `i `uc ]
-[; ;main.c: 101: EscreveFraseRamLCD("Km");
+[e ( _EscreveFraseRamLCD (1 &U _odoParcial ]
+[; ;main.c: 101: PosicaoCursorLCD(1, 14);
 "101
-[e ( _EscreveFraseRamLCD (1 -> :s 2C `*uc ]
-[; ;main.c: 102: }
+[e ( _PosicaoCursorLCD (2 , -> -> 1 `i `uc -> -> 14 `i `uc ]
+[; ;main.c: 102: EscreveFraseRamLCD("Km");
 "102
+[e ( _EscreveFraseRamLCD (1 -> :s 1C `*uc ]
+[; ;main.c: 103: PosicaoCursorLCD(2, 14);
+"103
+[e ( _PosicaoCursorLCD (2 , -> -> 2 `i `uc -> -> 14 `i `uc ]
+[; ;main.c: 104: EscreveFraseRamLCD("Km");
+"104
+[e ( _EscreveFraseRamLCD (1 -> :s 2C `*uc ]
+[; ;main.c: 105: }
+"105
 [e :UE 372 ]
 }
 [a 1C 75 109 0 ]

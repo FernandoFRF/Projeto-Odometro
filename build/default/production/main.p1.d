@@ -4,4 +4,6 @@
 Config.h  \
 EEPROM.h  \
 displayLCD.h  \
-Odometro_Total_Parcial.h 
+ADC.h  \
+Odometro_Total_Parcial.h  \
+Fuel_Gauge.h 

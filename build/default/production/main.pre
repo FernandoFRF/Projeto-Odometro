@@ -4792,7 +4792,31 @@ unsigned int atualizaOdoTotal;
 unsigned int bordaParcial = 0;
 unsigned int bordaTotal = 0;
 
-# 15 "main.c"
+# 7 "Fuel_Gauge.h"
+unsigned char numeroC = 0;
+unsigned char reserva = 0;
+
+
+unsigned char primeiroFiltro = 0;
+
+unsigned int countLed = 0;
+unsigned int tempoCombustivel = 0;
+
+unsigned int valorADCMedia = 0;
+unsigned int combArray[10];
+unsigned int valorTensao = 0;
+long porcentagemTensao = 0;
+
+void Combustivel(void);
+void TensaoBateria(void);
+void ValorCombustivel(void);
+
+# 6 "ADC.h"
+unsigned long valorADC = 0;
+
+void ADCRead(void);
+
+# 17 "main.c"
 void initInterrupt(void);
 void initHw(void);
 void display(void);
@@ -4826,6 +4850,7 @@ while (1)
 odometroTotal();
 odometroParcial();
 
+Combustivel();
 }
 }
 

@@ -9,6 +9,8 @@
 #include "displayLCD.h"
 #include "EEPROM.h"  
 #include "Odometro_Total_Parcial.h"
+#include "Fuel_Gauge.h"
+#include "ADC.h"
 
 /*Declaração de Prototipos de Funções*/
 
@@ -45,6 +47,7 @@ void main(void){
         odometroTotal();
         odometroParcial();
         //resetodoparcial
+        Combustivel();
     }
 }
 

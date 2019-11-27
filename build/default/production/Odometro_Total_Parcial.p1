@@ -1,12 +1,12 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "10 EEPROM.h
 [v _EEPROM_ReadByte `(uc ~T0 @X0 0 ef1`uc ]
-"13
-[v _EEPROM_WriteByte `(v ~T0 @X0 0 ef2`uc`uc ]
 "228 displayLCD.h
 [v _PosicaoCursorLCD `(v ~T0 @X0 0 ef2`uc`uc ]
 "282
 [v _EscreveFraseRamLCD `(v ~T0 @X0 0 ef1`*uc ]
+"13 EEPROM.h
+[v _EEPROM_WriteByte `(v ~T0 @X0 0 ef2`uc`uc ]
 "2794 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4550.h
 [s S116 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
 [n S116 . RE0 RE1 RE2 RE3 . RDPU ]
@@ -3601,339 +3601,353 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Odometro_Total_Parcial.h: 14: unsigned int bordaTotal = 0;
 "17 Odometro_Total_Parcial.c
 [v _odometroTotal `(v ~T0 @X0 1 ef ]
+"18
 {
-[; ;Odometro_Total_Parcial.c: 17: void odometroTotal(void){
+[; ;Odometro_Total_Parcial.c: 17: void odometroTotal(void)
+[; ;Odometro_Total_Parcial.c: 18: {
 [e :U _odometroTotal ]
 [f ]
-[; ;Odometro_Total_Parcial.c: 19: if (atualizaOdoTotal)
-"19
-[e $ ! != _atualizaOdoTotal -> -> 0 `i `ui 363  ]
-[; ;Odometro_Total_Parcial.c: 20: {
-"20
-{
-[; ;Odometro_Total_Parcial.c: 21: for(unsigned char i = 0x00, j = 0x05; i < 0x06, j > 0x06; i++, j--){
+[v F3830 `uc ~T0 @X0 -> 0 `x s odoTotal ]
+[i F3830
+:U ..
+-> 48 `c
+-> 48 `c
+-> 48 `c
+-> 48 `c
+-> 48 `c
+-> 48 `c
+-> 0 `c
+..
+]
+[; ;Odometro_Total_Parcial.c: 19: static unsigned char odoTotal[] = "000000";
+[; ;Odometro_Total_Parcial.c: 21: odoTotal [5] = EEPROM_ReadByte (0x00);
 "21
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[v _j `uc ~T0 @X0 1 a ]
-[e = _j -> -> 5 `i `uc ]
-[e $U 367  ]
-[e :U 364 ]
-{
+[e = *U + &U F3830 * -> -> -> 5 `i `ui `ux -> -> # *U &U F3830 `ui `ux ( _EEPROM_ReadByte (1 -> -> 0 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 22: odoTotal [4] = EEPROM_ReadByte (0x01);
 "22
-[v _memoria `uc ~T0 @X0 1 a ]
-[; ;Odometro_Total_Parcial.c: 22: unsigned char memoria = 0x10;
-[e = _memoria -> -> 16 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 23: odoTotal[j] = EEPROM_ReadByte (memoria + i);
+[e = *U + &U F3830 * -> -> -> 4 `i `ui `ux -> -> # *U &U F3830 `ui `ux ( _EEPROM_ReadByte (1 -> -> 1 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 23: odoTotal [3] = EEPROM_ReadByte (0x02);
 "23
-[e = *U + &U _odoTotal * -> _j `ux -> -> # *U &U _odoTotal `ui `ux ( _EEPROM_ReadByte (1 -> + -> _memoria `i -> _i `i `uc ]
+[e = *U + &U F3830 * -> -> -> 3 `i `ui `ux -> -> # *U &U F3830 `ui `ux ( _EEPROM_ReadByte (1 -> -> 2 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 24: odoTotal [2] = EEPROM_ReadByte (0x03);
 "24
-}
-"21
-[e ; ++ _i -> -> 1 `i `uc -- _j -> -> 1 `i `uc ]
-[e :U 367 ]
-[e $ != ; -> < -> _i `i -> 6 `i `i -> > -> _j `i -> 6 `i `i -> 0 `i 364  ]
-[e :U 365 ]
-"24
-}
-[; ;Odometro_Total_Parcial.c: 24: }
-[; ;Odometro_Total_Parcial.c: 26: odoTotal[5]++;
+[e = *U + &U F3830 * -> -> -> 2 `i `ui `ux -> -> # *U &U F3830 `ui `ux ( _EEPROM_ReadByte (1 -> -> 3 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 25: odoTotal [1] = EEPROM_ReadByte (0x04);
+"25
+[e = *U + &U F3830 * -> -> -> 1 `i `ui `ux -> -> # *U &U F3830 `ui `ux ( _EEPROM_ReadByte (1 -> -> 4 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 26: odoTotal [0] = EEPROM_ReadByte (0x05);
 "26
-[e ++ *U + &U _odoTotal * -> -> -> 5 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux -> -> 1 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 27: if (odoTotal[5] > 0x39)
-"27
-[e $ ! > -> *U + &U _odoTotal * -> -> -> 5 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux `i -> 57 `i 368  ]
-[; ;Odometro_Total_Parcial.c: 28: {
+[e = *U + &U F3830 * -> -> -> 0 `i `ui `ux -> -> # *U &U F3830 `ui `ux ( _EEPROM_ReadByte (1 -> -> 5 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 28: if (atualizaOdoTotal)
 "28
-{
-[; ;Odometro_Total_Parcial.c: 29: odoTotal[5] = 0x30;
+[e $ ! != _atualizaOdoTotal -> -> 0 `i `ui 363  ]
+[; ;Odometro_Total_Parcial.c: 29: {
 "29
-[e = *U + &U _odoTotal * -> -> -> 5 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux -> -> 48 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 30: odoTotal[4]++;
-"30
-[e ++ *U + &U _odoTotal * -> -> -> 4 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux -> -> 1 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 31: if (odoTotal[4] > 0x39)
+{
+[; ;Odometro_Total_Parcial.c: 31: odoTotal[5]++;
 "31
-[e $ ! > -> *U + &U _odoTotal * -> -> -> 4 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux `i -> 57 `i 369  ]
-[; ;Odometro_Total_Parcial.c: 32: {
+[e ++ *U + &U F3830 * -> -> -> 5 `i `ui `ux -> -> # *U &U F3830 `ui `ux -> -> 1 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 32: if (odoTotal[5] > 0x39)
 "32
-{
-[; ;Odometro_Total_Parcial.c: 33: odoTotal[4] = 0x30;
+[e $ ! > -> *U + &U F3830 * -> -> -> 5 `i `ui `ux -> -> # *U &U F3830 `ui `ux `i -> 57 `i 364  ]
+[; ;Odometro_Total_Parcial.c: 33: {
 "33
-[e = *U + &U _odoTotal * -> -> -> 4 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux -> -> 48 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 34: odoTotal[3]++;
+{
+[; ;Odometro_Total_Parcial.c: 34: odoTotal[5] = 0x30;
 "34
-[e ++ *U + &U _odoTotal * -> -> -> 3 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux -> -> 1 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 35: if (odoTotal[3] > 0x39)
+[e = *U + &U F3830 * -> -> -> 5 `i `ui `ux -> -> # *U &U F3830 `ui `ux -> -> 48 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 35: odoTotal[4]++;
 "35
-[e $ ! > -> *U + &U _odoTotal * -> -> -> 3 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux `i -> 57 `i 370  ]
-[; ;Odometro_Total_Parcial.c: 36: {
+[e ++ *U + &U F3830 * -> -> -> 4 `i `ui `ux -> -> # *U &U F3830 `ui `ux -> -> 1 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 36: if (odoTotal[4] > 0x39)
 "36
-{
-[; ;Odometro_Total_Parcial.c: 37: odoTotal[3] = 0x30;
+[e $ ! > -> *U + &U F3830 * -> -> -> 4 `i `ui `ux -> -> # *U &U F3830 `ui `ux `i -> 57 `i 365  ]
+[; ;Odometro_Total_Parcial.c: 37: {
 "37
-[e = *U + &U _odoTotal * -> -> -> 3 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux -> -> 48 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 38: odoTotal[2]++;
+{
+[; ;Odometro_Total_Parcial.c: 38: odoTotal[4] = 0x30;
 "38
-[e ++ *U + &U _odoTotal * -> -> -> 2 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux -> -> 1 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 39: if (odoTotal[2] > 0x39)
+[e = *U + &U F3830 * -> -> -> 4 `i `ui `ux -> -> # *U &U F3830 `ui `ux -> -> 48 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 39: odoTotal[3]++;
 "39
-[e $ ! > -> *U + &U _odoTotal * -> -> -> 2 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux `i -> 57 `i 371  ]
-[; ;Odometro_Total_Parcial.c: 40: {
+[e ++ *U + &U F3830 * -> -> -> 3 `i `ui `ux -> -> # *U &U F3830 `ui `ux -> -> 1 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 40: if (odoTotal[3] > 0x39)
 "40
-{
-[; ;Odometro_Total_Parcial.c: 41: odoTotal[2] = 0x30;
+[e $ ! > -> *U + &U F3830 * -> -> -> 3 `i `ui `ux -> -> # *U &U F3830 `ui `ux `i -> 57 `i 366  ]
+[; ;Odometro_Total_Parcial.c: 41: {
 "41
-[e = *U + &U _odoTotal * -> -> -> 2 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux -> -> 48 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 42: odoTotal[1]++;
+{
+[; ;Odometro_Total_Parcial.c: 42: odoTotal[3] = 0x30;
 "42
-[e ++ *U + &U _odoTotal * -> -> -> 1 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux -> -> 1 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 43: if (odoTotal[1] > 0x39)
+[e = *U + &U F3830 * -> -> -> 3 `i `ui `ux -> -> # *U &U F3830 `ui `ux -> -> 48 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 43: odoTotal[2]++;
 "43
-[e $ ! > -> *U + &U _odoTotal * -> -> -> 1 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux `i -> 57 `i 372  ]
-[; ;Odometro_Total_Parcial.c: 44: {
+[e ++ *U + &U F3830 * -> -> -> 2 `i `ui `ux -> -> # *U &U F3830 `ui `ux -> -> 1 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 44: if (odoTotal[2] > 0x39)
 "44
-{
-[; ;Odometro_Total_Parcial.c: 45: odoTotal[1] = 0x30;
+[e $ ! > -> *U + &U F3830 * -> -> -> 2 `i `ui `ux -> -> # *U &U F3830 `ui `ux `i -> 57 `i 367  ]
+[; ;Odometro_Total_Parcial.c: 45: {
 "45
-[e = *U + &U _odoTotal * -> -> -> 1 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux -> -> 48 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 46: odoTotal[0]++;
-"46
-[e ++ *U + &U _odoTotal * -> -> -> 0 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux -> -> 1 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 47: if (odoTotal[0] > 0x39)
-"47
-[e $ ! > -> *U + &U _odoTotal * -> -> -> 0 `i `ui `ux -> -> # *U &U _odoTotal `ui `ux `i -> 57 `i 373  ]
-[; ;Odometro_Total_Parcial.c: 48: {
-"48
 {
+[; ;Odometro_Total_Parcial.c: 46: odoTotal[2] = 0x30;
+"46
+[e = *U + &U F3830 * -> -> -> 2 `i `ui `ux -> -> # *U &U F3830 `ui `ux -> -> 48 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 47: odoTotal[1]++;
+"47
+[e ++ *U + &U F3830 * -> -> -> 1 `i `ui `ux -> -> # *U &U F3830 `ui `ux -> -> 1 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 48: if (odoTotal[1] > 0x39)
+"48
+[e $ ! > -> *U + &U F3830 * -> -> -> 1 `i `ui `ux -> -> # *U &U F3830 `ui `ux `i -> 57 `i 368  ]
+[; ;Odometro_Total_Parcial.c: 49: {
+"49
+{
+[; ;Odometro_Total_Parcial.c: 50: odoTotal[1] = 0x30;
 "50
-}
-[e :U 373 ]
+[e = *U + &U F3830 * -> -> -> 1 `i `ui `ux -> -> # *U &U F3830 `ui `ux -> -> 48 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 51: odoTotal[0]++;
 "51
-}
-[e :U 372 ]
+[e ++ *U + &U F3830 * -> -> -> 0 `i `ui `ux -> -> # *U &U F3830 `ui `ux -> -> 1 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 52: if (odoTotal[0] > 0x39)
 "52
-}
-[e :U 371 ]
+[e $ ! > -> *U + &U F3830 * -> -> -> 0 `i `ui `ux -> -> # *U &U F3830 `ui `ux `i -> 57 `i 369  ]
+[; ;Odometro_Total_Parcial.c: 53: {
 "53
-}
-[e :U 370 ]
+{
+[; ;Odometro_Total_Parcial.c: 54: odoTotal[0] = 0x30;
 "54
+[e = *U + &U F3830 * -> -> -> 0 `i `ui `ux -> -> # *U &U F3830 `ui `ux -> -> 48 `i `uc ]
+"56
 }
 [e :U 369 ]
-"55
+"57
 }
 [e :U 368 ]
-"57
-[v _memoria `uc ~T0 @X0 1 a ]
-[; ;Odometro_Total_Parcial.c: 50: }
-[; ;Odometro_Total_Parcial.c: 51: }
-[; ;Odometro_Total_Parcial.c: 52: }
-[; ;Odometro_Total_Parcial.c: 53: }
-[; ;Odometro_Total_Parcial.c: 54: }
-[; ;Odometro_Total_Parcial.c: 55: }
-[; ;Odometro_Total_Parcial.c: 57: unsigned char memoria = 0x10;
-[e = _memoria -> -> 16 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 58: for (unsigned char i = 0x00, j = 0x05; i < 0x05, j > 0x00; i++, j--){
 "58
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[v _j `uc ~T0 @X0 1 a ]
-[e = _j -> -> 5 `i `uc ]
-[e $U 377  ]
-[e :U 374 ]
-{
-[; ;Odometro_Total_Parcial.c: 59: EEPROM_WriteByte(memoria + i, odoTotal[j]);
+}
+[e :U 367 ]
 "59
-[e ( _EEPROM_WriteByte (2 , -> + -> _memoria `i -> _i `i `uc *U + &U _odoTotal * -> _j `ux -> -> # *U &U _odoTotal `ui `ux ]
+}
+[e :U 366 ]
 "60
 }
-"58
-[e ; ++ _i -> -> 1 `i `uc -- _j -> -> 1 `i `uc ]
-[e :U 377 ]
-[e $ != ; -> < -> _i `i -> 5 `i `i -> > -> _j `i -> 0 `i `i -> 0 `i 374  ]
-[e :U 375 ]
-"60
+[e :U 365 ]
+"61
 }
-[; ;Odometro_Total_Parcial.c: 60: }
-[; ;Odometro_Total_Parcial.c: 62: PosicaoCursorLCD(1, 7);
+[e :U 364 ]
 "62
-[e ( _PosicaoCursorLCD (2 , -> -> 1 `i `uc -> -> 7 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 63: EscreveFraseRamLCD(odoTotal);
-"63
-[e ( _EscreveFraseRamLCD (1 &U _odoTotal ]
+}
+[e :U 363 ]
+[; ;Odometro_Total_Parcial.c: 56: }
+[; ;Odometro_Total_Parcial.c: 57: }
+[; ;Odometro_Total_Parcial.c: 58: }
+[; ;Odometro_Total_Parcial.c: 59: }
+[; ;Odometro_Total_Parcial.c: 60: }
+[; ;Odometro_Total_Parcial.c: 61: }
+[; ;Odometro_Total_Parcial.c: 62: }
 [; ;Odometro_Total_Parcial.c: 64: atualizaOdoTotal = 0;
 "64
 [e = _atualizaOdoTotal -> -> 0 `i `ui ]
+[; ;Odometro_Total_Parcial.c: 65: PosicaoCursorLCD(1, 7);
 "65
-}
-[e :U 363 ]
-[; ;Odometro_Total_Parcial.c: 65: }
-[; ;Odometro_Total_Parcial.c: 66: }
+[e ( _PosicaoCursorLCD (2 , -> -> 1 `i `uc -> -> 7 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 66: EscreveFraseRamLCD(odoTotal);
 "66
+[e ( _EscreveFraseRamLCD (1 &U F3830 ]
+[; ;Odometro_Total_Parcial.c: 68: EEPROM_WriteByte(0x00, odoTotal[5]);
+"68
+[e ( _EEPROM_WriteByte (2 , -> -> 0 `i `uc *U + &U F3830 * -> -> -> 5 `i `ui `ux -> -> # *U &U F3830 `ui `ux ]
+[; ;Odometro_Total_Parcial.c: 69: EEPROM_WriteByte(0x01, odoTotal[4]);
+"69
+[e ( _EEPROM_WriteByte (2 , -> -> 1 `i `uc *U + &U F3830 * -> -> -> 4 `i `ui `ux -> -> # *U &U F3830 `ui `ux ]
+[; ;Odometro_Total_Parcial.c: 70: EEPROM_WriteByte(0x02, odoTotal[3]);
+"70
+[e ( _EEPROM_WriteByte (2 , -> -> 2 `i `uc *U + &U F3830 * -> -> -> 3 `i `ui `ux -> -> # *U &U F3830 `ui `ux ]
+[; ;Odometro_Total_Parcial.c: 71: EEPROM_WriteByte(0x03, odoTotal[2]);
+"71
+[e ( _EEPROM_WriteByte (2 , -> -> 3 `i `uc *U + &U F3830 * -> -> -> 2 `i `ui `ux -> -> # *U &U F3830 `ui `ux ]
+[; ;Odometro_Total_Parcial.c: 72: EEPROM_WriteByte(0x04, odoTotal[1]);
+"72
+[e ( _EEPROM_WriteByte (2 , -> -> 4 `i `uc *U + &U F3830 * -> -> -> 1 `i `ui `ux -> -> # *U &U F3830 `ui `ux ]
+[; ;Odometro_Total_Parcial.c: 73: EEPROM_WriteByte(0x05, odoTotal[0]);
+"73
+[e ( _EEPROM_WriteByte (2 , -> -> 5 `i `uc *U + &U F3830 * -> -> -> 0 `i `ui `ux -> -> # *U &U F3830 `ui `ux ]
+[; ;Odometro_Total_Parcial.c: 83: }
+"83
 [e :UE 362 ]
 }
-"68
+"85
 [v _odometroParcial `(v ~T0 @X0 1 ef ]
 {
-[; ;Odometro_Total_Parcial.c: 68: void odometroParcial(void){
+[; ;Odometro_Total_Parcial.c: 85: void odometroParcial(void){
 [e :U _odometroParcial ]
 [f ]
-"70
-[v _trava `uc ~T0 @X0 1 a ]
-[; ;Odometro_Total_Parcial.c: 70: unsigned char trava = 0;
-[e = _trava -> -> 0 `i `uc ]
-"71
-[v F3838 `uc ~T0 @X0 1 s i ]
-"72
-[v _position `uc ~T0 @X0 1 a ]
-[; ;Odometro_Total_Parcial.c: 71: static unsigned char i;
-[; ;Odometro_Total_Parcial.c: 72: char position = 0;
-[e = _position -> -> 0 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 74: if (atualizaOdoParcial){
-"74
-[e $ ! != _atualizaOdoParcial -> -> 0 `i `ui 379  ]
-{
-[; ;Odometro_Total_Parcial.c: 75: odoParcial[5]++;
-"75
-[e ++ *U + &U _odoParcial * -> -> -> 5 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 1 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 77: if (odoParcial[5] > 0x39){
-"77
-[e $ ! > -> *U + &U _odoParcial * -> -> -> 5 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux `i -> 57 `i 380  ]
-{
-[; ;Odometro_Total_Parcial.c: 78: odoParcial[5] = 0x30;
-"78
-[e = *U + &U _odoParcial * -> -> -> 5 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 79: odoParcial[3]++;
-"79
-[e ++ *U + &U _odoParcial * -> -> -> 3 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 1 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 81: if (odoParcial[3] > 0x39){
-"81
-[e $ ! > -> *U + &U _odoParcial * -> -> -> 3 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux `i -> 57 `i 381  ]
-{
-[; ;Odometro_Total_Parcial.c: 82: odoParcial[3] = 0x30;
-"82
-[e = *U + &U _odoParcial * -> -> -> 3 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 83: odoParcial[2]++;
-"83
-[e ++ *U + &U _odoParcial * -> -> -> 2 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 1 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 85: if (odoParcial[2] > 0x39){
-"85
-[e $ ! > -> *U + &U _odoParcial * -> -> -> 2 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux `i -> 57 `i 382  ]
-{
-[; ;Odometro_Total_Parcial.c: 86: odoParcial[2] = 0x30;
-"86
-[e = *U + &U _odoParcial * -> -> -> 2 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 87: odoParcial[1]++;
 "87
-[e ++ *U + &U _odoParcial * -> -> -> 1 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 1 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 89: if (odoParcial[1] > 0x39){
+[v _trava `uc ~T0 @X0 1 a ]
+[; ;Odometro_Total_Parcial.c: 87: unsigned char trava = 0;
+[e = _trava -> -> 0 `i `uc ]
+"88
+[v F3833 `uc ~T0 @X0 1 s i ]
 "89
-[e $ ! > -> *U + &U _odoParcial * -> -> -> 1 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux `i -> 57 `i 383  ]
-{
-[; ;Odometro_Total_Parcial.c: 90: odoParcial[1] = 0x30;
-"90
-[e = *U + &U _odoParcial * -> -> -> 1 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 91: odoParcial[0]++;
+[v _position `uc ~T0 @X0 1 a ]
+[; ;Odometro_Total_Parcial.c: 88: static unsigned char i;
+[; ;Odometro_Total_Parcial.c: 89: char position = 0;
+[e = _position -> -> 0 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 91: if (atualizaOdoParcial)
 "91
-[e ++ *U + &U _odoParcial * -> -> -> 0 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 1 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 93: if (odoParcial[0] > 0x39){
+[e $ ! != _atualizaOdoParcial -> -> 0 `i `ui 371  ]
+[; ;Odometro_Total_Parcial.c: 92: {
+"92
+{
+[; ;Odometro_Total_Parcial.c: 93: odoParcial[5]++;
 "93
-[e $ ! > -> *U + &U _odoParcial * -> -> -> 0 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux `i -> 57 `i 384  ]
-{
-[; ;Odometro_Total_Parcial.c: 94: for (i = 0; i <= 3; i++){
-"94
-{
-[e = F3838 -> -> 0 `i `uc ]
-[e $ <= -> F3838 `i -> 3 `i 385  ]
-[e $U 386  ]
-[e :U 385 ]
-{
-[; ;Odometro_Total_Parcial.c: 95: odoParcial[i] = '0';
+[e ++ *U + &U _odoParcial * -> -> -> 5 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 1 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 95: if (odoParcial[5] > 0x39){
 "95
-[e = *U + &U _odoParcial * -> F3838 `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `ui `uc ]
-"97
-}
-"94
-[e ++ F3838 -> -> 1 `i `uc ]
-[e $ <= -> F3838 `i -> 3 `i 385  ]
-[e :U 386 ]
-"97
-}
-"98
-}
-[e :U 384 ]
-"99
-}
-[e :U 383 ]
-"100
-}
-[e :U 382 ]
-"101
-}
-[e :U 381 ]
-"102
-}
-[e :U 380 ]
-[; ;Odometro_Total_Parcial.c: 97: }
-[; ;Odometro_Total_Parcial.c: 98: }
-[; ;Odometro_Total_Parcial.c: 99: }
-[; ;Odometro_Total_Parcial.c: 100: }
-[; ;Odometro_Total_Parcial.c: 101: }
-[; ;Odometro_Total_Parcial.c: 102: }
-[; ;Odometro_Total_Parcial.c: 103: PosicaoCursorLCD(2, 7);
-"103
-[e ( _PosicaoCursorLCD (2 , -> -> 2 `i `uc -> -> 7 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 104: EscreveFraseRamLCD(odoParcial);
-"104
-[e ( _EscreveFraseRamLCD (1 &U _odoParcial ]
-[; ;Odometro_Total_Parcial.c: 105: atualizaOdoParcial = 0;
-"105
-[e = _atualizaOdoParcial -> -> 0 `i `ui ]
-[; ;Odometro_Total_Parcial.c: 108: if((PORTEbits.RE0 == 0)&&(trava == 0)) {
-"108
-[e $ ! && == -> . . _PORTEbits 0 0 `i -> 0 `i == -> _trava `i -> 0 `i 388  ]
+[e $ ! > -> *U + &U _odoParcial * -> -> -> 5 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux `i -> 57 `i 372  ]
 {
-[; ;Odometro_Total_Parcial.c: 109: odoParcial[0] = 0x30;
-"109
-[e = *U + &U _odoParcial * -> -> -> 0 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 110: odoParcial[1] = 0x30;
-"110
-[e = *U + &U _odoParcial * -> -> -> 1 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 111: odoParcial[2] = 0x30;
-"111
-[e = *U + &U _odoParcial * -> -> -> 2 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 112: odoParcial[3] = 0x30;
-"112
-[e = *U + &U _odoParcial * -> -> -> 3 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 113: odoParcial[5] = 0x30;
-"113
+[; ;Odometro_Total_Parcial.c: 96: odoParcial[5] = 0x30;
+"96
 [e = *U + &U _odoParcial * -> -> -> 5 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
-[; ;Odometro_Total_Parcial.c: 114: trava = 1;
-"114
-[e = _trava -> -> 1 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 97: odoParcial[3]++;
+"97
+[e ++ *U + &U _odoParcial * -> -> -> 3 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 1 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 99: if (odoParcial[3] > 0x39){
+"99
+[e $ ! > -> *U + &U _odoParcial * -> -> -> 3 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux `i -> 57 `i 373  ]
+{
+[; ;Odometro_Total_Parcial.c: 100: odoParcial[3] = 0x30;
+"100
+[e = *U + &U _odoParcial * -> -> -> 3 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 101: odoParcial[2]++;
+"101
+[e ++ *U + &U _odoParcial * -> -> -> 2 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 1 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 103: if (odoParcial[2] > 0x39){
+"103
+[e $ ! > -> *U + &U _odoParcial * -> -> -> 2 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux `i -> 57 `i 374  ]
+{
+[; ;Odometro_Total_Parcial.c: 104: odoParcial[2] = 0x30;
+"104
+[e = *U + &U _odoParcial * -> -> -> 2 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 105: odoParcial[1]++;
+"105
+[e ++ *U + &U _odoParcial * -> -> -> 1 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 1 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 107: if (odoParcial[1] > 0x39){
+"107
+[e $ ! > -> *U + &U _odoParcial * -> -> -> 1 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux `i -> 57 `i 375  ]
+{
+[; ;Odometro_Total_Parcial.c: 108: odoParcial[1] = 0x30;
+"108
+[e = *U + &U _odoParcial * -> -> -> 1 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 109: odoParcial[0]++;
+"109
+[e ++ *U + &U _odoParcial * -> -> -> 0 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 1 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 111: if (odoParcial[0] > 0x39){
+"111
+[e $ ! > -> *U + &U _odoParcial * -> -> -> 0 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux `i -> 57 `i 376  ]
+{
+[; ;Odometro_Total_Parcial.c: 112: for (i = 0; i <= 3; i++){
+"112
+{
+[e = F3833 -> -> 0 `i `uc ]
+[e $ <= -> F3833 `i -> 3 `i 377  ]
+[e $U 378  ]
+[e :U 377 ]
+{
+[; ;Odometro_Total_Parcial.c: 113: odoParcial[i] = '0';
+"113
+[e = *U + &U _odoParcial * -> F3833 `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `ui `uc ]
 "115
 }
-[; ;Odometro_Total_Parcial.c: 115: } else if((PORTEbits.RE0 == 1) && (trava == 1)){
-[e $U 389  ]
-[e :U 388 ]
-[e $ ! && == -> . . _PORTEbits 0 0 `i -> 1 `i == -> _trava `i -> 1 `i 390  ]
-{
-[; ;Odometro_Total_Parcial.c: 116: trava = 0;
+"112
+[e ++ F3833 -> -> 1 `i `uc ]
+[e $ <= -> F3833 `i -> 3 `i 377  ]
+[e :U 378 ]
+"115
+}
 "116
-[e = _trava -> -> 0 `i `uc ]
+}
+[e :U 376 ]
 "117
 }
-[e :U 390 ]
+[e :U 375 ]
 "118
-[e :U 389 ]
 }
-[e :U 379 ]
+[e :U 374 ]
+"119
+}
+[e :U 373 ]
+"120
+}
+[e :U 372 ]
+[; ;Odometro_Total_Parcial.c: 115: }
+[; ;Odometro_Total_Parcial.c: 116: }
 [; ;Odometro_Total_Parcial.c: 117: }
 [; ;Odometro_Total_Parcial.c: 118: }
 [; ;Odometro_Total_Parcial.c: 119: }
-"119
-[e :UE 378 ]
+[; ;Odometro_Total_Parcial.c: 120: }
+[; ;Odometro_Total_Parcial.c: 121: PosicaoCursorLCD(2, 7);
+"121
+[e ( _PosicaoCursorLCD (2 , -> -> 2 `i `uc -> -> 7 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 122: EscreveFraseRamLCD(odoParcial);
+"122
+[e ( _EscreveFraseRamLCD (1 &U _odoParcial ]
+[; ;Odometro_Total_Parcial.c: 123: atualizaOdoParcial = 0;
+"123
+[e = _atualizaOdoParcial -> -> 0 `i `ui ]
+"125
+}
+[e :U 371 ]
+[; ;Odometro_Total_Parcial.c: 125: }
+[; ;Odometro_Total_Parcial.c: 126: if((PORTEbits.RE0 == 0)&&(trava == 0))
+"126
+[e $ ! && == -> . . _PORTEbits 0 0 `i -> 0 `i == -> _trava `i -> 0 `i 380  ]
+[; ;Odometro_Total_Parcial.c: 127: {
+"127
+{
+[; ;Odometro_Total_Parcial.c: 128: odoParcial[0] = 0x30;
+"128
+[e = *U + &U _odoParcial * -> -> -> 0 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 129: odoParcial[1] = 0x30;
+"129
+[e = *U + &U _odoParcial * -> -> -> 1 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 130: odoParcial[2] = 0x30;
+"130
+[e = *U + &U _odoParcial * -> -> -> 2 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 131: odoParcial[3] = 0x30;
+"131
+[e = *U + &U _odoParcial * -> -> -> 3 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 132: odoParcial[5] = 0x30;
+"132
+[e = *U + &U _odoParcial * -> -> -> 5 `i `ui `ux -> -> # *U &U _odoParcial `ui `ux -> -> 48 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 133: PosicaoCursorLCD(2, 7);
+"133
+[e ( _PosicaoCursorLCD (2 , -> -> 2 `i `uc -> -> 7 `i `uc ]
+[; ;Odometro_Total_Parcial.c: 134: EscreveFraseRamLCD(odoParcial);
+"134
+[e ( _EscreveFraseRamLCD (1 &U _odoParcial ]
+[; ;Odometro_Total_Parcial.c: 136: trava = 1;
+"136
+[e = _trava -> -> 1 `i `uc ]
+"137
+}
+[; ;Odometro_Total_Parcial.c: 137: }
+[e $U 381  ]
+"138
+[e :U 380 ]
+[; ;Odometro_Total_Parcial.c: 138: else if((PORTEbits.RE0 == 1) && (trava == 1))
+[e $ ! && == -> . . _PORTEbits 0 0 `i -> 1 `i == -> _trava `i -> 1 `i 382  ]
+[; ;Odometro_Total_Parcial.c: 139: {
+"139
+{
+[; ;Odometro_Total_Parcial.c: 140: trava = 0;
+"140
+[e = _trava -> -> 0 `i `uc ]
+"141
+}
+[e :U 382 ]
+"143
+[e :U 381 ]
+[; ;Odometro_Total_Parcial.c: 141: }
+[; ;Odometro_Total_Parcial.c: 143: }
+[e :UE 370 ]
 }

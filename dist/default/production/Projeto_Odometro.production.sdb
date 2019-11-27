@@ -75,23 +75,23 @@
 [v _ValorCombustivel ValorCombustivel `(v  1 e 1 0 ]
 "21 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Grupo 6\Projeto_Odometro\main.c
 [v _isr isr `II(v  1 e 1 0 ]
-"47
+"51
 [v _main main `(v  1 e 1 0 ]
-"63
+"67
 [v _initInterrupt initInterrupt `(v  1 e 1 0 ]
-"76
+"80
 [v _initHw initHw `(v  1 e 1 0 ]
-"104
+"108
 [v _display display `(v  1 e 1 0 ]
 "17 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Grupo 6\Projeto_Odometro\Odometro_Total_Parcial.c
 [v _odometroTotal odometroTotal `(v  1 e 1 0 ]
-"68
+"85
 [v _odometroParcial odometroParcial `(v  1 e 1 0 ]
 "6 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Grupo 6\Projeto_Odometro\ADC.h
 [v _valorADC valorADC `ul  1 e 4 0 ]
 "2418 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4550.h
 [v _PORTB PORTB `VEuc  1 e 1 @3969 ]
-[s S743 . 1 `uc 1 RC0 1 0 :1:0 
+[s S738 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -101,29 +101,29 @@
 `uc 1 RC7 1 0 :1:7 
 ]
 "2569
-[s S752 . 1 `uc 1 T1OSO 1 0 :1:0 
+[s S747 . 1 `uc 1 T1OSO 1 0 :1:0 
 `uc 1 T1OSI 1 0 :1:1 
 `uc 1 CCP1 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
 `uc 1 TX 1 0 :1:6 
 `uc 1 RX 1 0 :1:7 
 ]
-[s S759 . 1 `uc 1 T13CKI 1 0 :1:0 
+[s S754 . 1 `uc 1 T13CKI 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 P1A 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
 `uc 1 CK 1 0 :1:6 
 `uc 1 DT 1 0 :1:7 
 ]
-[s S766 . 1 `uc 1 . 1 0 :1:0 
+[s S761 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 CCP2 1 0 :1:1 
 `uc 1 PA1 1 0 :1:2 
 ]
-[s S770 . 1 `uc 1 . 1 0 :1:0 
+[s S765 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 PA2 1 0 :1:1 
 ]
-[u S773 . 1 `S743 1 . 1 0 `S752 1 . 1 0 `S759 1 . 1 0 `S766 1 . 1 0 `S770 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES773  1 e 1 @3970 ]
+[u S768 . 1 `S738 1 . 1 0 `S747 1 . 1 0 `S754 1 . 1 0 `S761 1 . 1 0 `S765 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES768  1 e 1 @3970 ]
 [s S34 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
@@ -193,7 +193,7 @@
 [v _TRISB TRISB `VEuc  1 e 1 @3987 ]
 "3801
 [v _TRISC TRISC `VEuc  1 e 1 @3988 ]
-[s S524 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S519 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
@@ -201,15 +201,15 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "3829
-[s S531 . 1 `uc 1 RC0 1 0 :1:0 
+[s S526 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
 `uc 1 RC6 1 0 :1:6 
 `uc 1 RC7 1 0 :1:7 
 ]
-[u S538 . 1 `S524 1 . 1 0 `S531 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES538  1 e 1 @3988 ]
+[u S533 . 1 `S519 1 . 1 0 `S526 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES533  1 e 1 @3988 ]
 "3954
 [v _TRISD TRISD `VEuc  1 e 1 @3989 ]
 [s S25 . 1 `uc 1 TRISD0 1 0 :1:0 
@@ -228,7 +228,7 @@
 [v _TRISE TRISE `VEuc  1 e 1 @3990 ]
 "4334
 [v _PIE1 PIE1 `VEuc  1 e 1 @3997 ]
-[s S456 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S451 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -238,17 +238,17 @@
 `uc 1 SPPIE 1 0 :1:7 
 ]
 "4358
-[s S465 . 1 `uc 1 . 1 0 :4:0 
+[s S460 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IE 1 0 :1:4 
 `uc 1 RC1IE 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 PSPIE 1 0 :1:7 
 ]
-[u S471 . 1 `S456 1 . 1 0 `S465 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES471  1 e 1 @3997 ]
+[u S466 . 1 `S451 1 . 1 0 `S460 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES466  1 e 1 @3997 ]
 "4417
 [v _PIR1 PIR1 `VEuc  1 e 1 @3998 ]
-[s S422 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[s S417 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -258,14 +258,14 @@
 `uc 1 SPPIF 1 0 :1:7 
 ]
 "4441
-[s S431 . 1 `uc 1 . 1 0 :4:0 
+[s S426 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IF 1 0 :1:4 
 `uc 1 RC1IF 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 PSPIF 1 0 :1:7 
 ]
-[u S437 . 1 `S422 1 . 1 0 `S431 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES437  1 e 1 @3998 ]
+[u S432 . 1 `S417 1 . 1 0 `S426 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES432  1 e 1 @3998 ]
 "4500
 [v _IPR1 IPR1 `VEuc  1 e 1 @3999 ]
 "4583
@@ -297,11 +297,11 @@
 [v _EEDATA EEDATA `VEuc  1 e 1 @4008 ]
 "4870
 [v _EEADR EEADR `VEuc  1 e 1 @4009 ]
-[s S603 . 1 `uc 1 . 1 0 :2:0 
+[s S598 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_T3SYNC 1 0 :1:2 
 ]
 "5420
-[s S606 . 1 `uc 1 TMR3ON 1 0 :1:0 
+[s S601 . 1 `uc 1 TMR3ON 1 0 :1:0 
 `uc 1 TMR3CS 1 0 :1:1 
 `uc 1 nT3SYNC 1 0 :1:2 
 `uc 1 T3CCP1 1 0 :1:3 
@@ -309,25 +309,25 @@
 `uc 1 T3CCP2 1 0 :1:6 
 `uc 1 RD16 1 0 :1:7 
 ]
-[s S614 . 1 `uc 1 . 1 0 :2:0 
+[s S609 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T3SYNC 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 T3CKPS0 1 0 :1:4 
 `uc 1 T3CKPS1 1 0 :1:5 
 ]
-[s S620 . 1 `uc 1 . 1 0 :2:0 
+[s S615 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T3NSYNC 1 0 :1:2 
 ]
-[s S623 . 1 `uc 1 . 1 0 :3:0 
+[s S618 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 SOSCEN3 1 0 :1:3 
 `uc 1 . 1 0 :3:4 
 `uc 1 RD163 1 0 :1:7 
 ]
-[s S628 . 1 `uc 1 . 1 0 :7:0 
+[s S623 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 T3RD16 1 0 :1:7 
 ]
-[u S631 . 1 `S603 1 . 1 0 `S606 1 . 1 0 `S614 1 . 1 0 `S620 1 . 1 0 `S623 1 . 1 0 `S628 1 . 1 0 ]
-[v _T3CONbits T3CONbits `VES631  1 e 1 @4017 ]
+[u S626 . 1 `S598 1 . 1 0 `S601 1 . 1 0 `S609 1 . 1 0 `S615 1 . 1 0 `S618 1 . 1 0 `S623 1 . 1 0 ]
+[v _T3CONbits T3CONbits `VES626  1 e 1 @4017 ]
 "6248
 [v _CCP1CON CCP1CON `VEuc  1 e 1 @4029 ]
 "6427
@@ -336,38 +336,38 @@
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
 "6581
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
-[s S810 . 1 `uc 1 . 1 0 :1:0 
+[s S805 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_NOT_DONE 1 0 :1:1 
 ]
 "6625
-[s S813 . 1 `uc 1 ADON 1 0 :1:0 
+[s S808 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 ]
-[s S817 . 1 `uc 1 . 1 0 :1:0 
+[s S812 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
 `uc 1 CHS2 1 0 :1:4 
 `uc 1 CHS3 1 0 :1:5 
 ]
-[s S824 . 1 `uc 1 . 1 0 :1:0 
+[s S819 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 DONE 1 0 :1:1 
 ]
-[s S827 . 1 `uc 1 . 1 0 :1:0 
+[s S822 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 ]
-[s S830 . 1 `uc 1 . 1 0 :1:0 
+[s S825 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_DONE 1 0 :1:1 
 ]
-[s S833 . 1 `uc 1 . 1 0 :1:0 
+[s S828 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S836 . 1 `uc 1 . 1 0 :1:0 
+[s S831 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GODONE 1 0 :1:1 
 ]
-[u S839 . 1 `S810 1 . 1 0 `S813 1 . 1 0 `S817 1 . 1 0 `S824 1 . 1 0 `S827 1 . 1 0 `S830 1 . 1 0 `S833 1 . 1 0 `S836 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES839  1 e 1 @4034 ]
+[u S834 . 1 `S805 1 . 1 0 `S808 1 . 1 0 `S812 1 . 1 0 `S819 1 . 1 0 `S822 1 . 1 0 `S825 1 . 1 0 `S828 1 . 1 0 `S831 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES834  1 e 1 @4034 ]
 "6705
 [v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
 "6711
@@ -441,25 +441,17 @@
 [v _bordaParcial bordaParcial `ui  1 e 2 0 ]
 "14
 [v _bordaTotal bordaTotal `ui  1 e 2 0 ]
-"47 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Grupo 6\Projeto_Odometro\main.c
+"51 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Grupo 6\Projeto_Odometro\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"60
+"64
 } 0
 "17 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Grupo 6\Projeto_Odometro\Odometro_Total_Parcial.c
 [v _odometroTotal odometroTotal `(v  1 e 1 0 ]
 {
-"22
-[v odometroTotal@memoria memoria `uc  1 a 1 20 ]
-"58
-[v odometroTotal@j_380 j `uc  1 a 1 25 ]
-[v odometroTotal@i_379 i `uc  1 a 1 23 ]
-"21
-[v odometroTotal@j j `uc  1 a 1 24 ]
-[v odometroTotal@i i `uc  1 a 1 22 ]
-"57
-[v odometroTotal@memoria_378 memoria `uc  1 a 1 21 ]
-"66
+"18
+[v odometroTotal@odoTotal odoTotal `[7]uc  1 s 7 odoTotal ]
+"83
 } 0
 "17 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Grupo 6\Projeto_Odometro\EEPROM.c
 [v _EEPROM_WriteByte EEPROM_WriteByte `(v  1 e 1 0 ]
@@ -480,31 +472,31 @@
 [v EEPROM_ReadByte@MemoryAddress MemoryAddress `uc  1 a 1 14 ]
 "15
 } 0
-"68 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Grupo 6\Projeto_Odometro\Odometro_Total_Parcial.c
+"85 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Grupo 6\Projeto_Odometro\Odometro_Total_Parcial.c
 [v _odometroParcial odometroParcial `(v  1 e 1 0 ]
 {
-"70
+"87
 [v odometroParcial@trava trava `uc  1 a 1 21 ]
-"72
+"89
 [v odometroParcial@position position `uc  1 a 1 20 ]
-"71
+"88
 [v odometroParcial@i i `uc  1 s 1 i ]
-"119
+"143
 } 0
-"63 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Grupo 6\Projeto_Odometro\main.c
+"67 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Grupo 6\Projeto_Odometro\main.c
 [v _initInterrupt initInterrupt `(v  1 e 1 0 ]
 {
-"75
+"79
 } 0
-"76
+"80
 [v _initHw initHw `(v  1 e 1 0 ]
 {
-"102
+"106
 } 0
-"104
+"108
 [v _display display `(v  1 e 1 0 ]
 {
-"113
+"117
 } 0
 "287 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Grupo 6\Projeto_Odometro\displayLCD.c
 [v _PosicaoCursorLCD PosicaoCursorLCD `(v  1 e 1 0 ]
@@ -627,5 +619,5 @@
 "21 C:\Users\ferna\OneDrive\햞ea de Trabalho\Projeto_SCCS\Grupo 6\Projeto_Odometro\main.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"44
+"48
 } 0

@@ -14,15 +14,20 @@
 
 
 
-void odometroTotal(void){
+void odometroTotal(void)
+{
+    static unsigned char odoTotal[] = "000000";
+    
+    odoTotal [5] = EEPROM_ReadByte (0x00);
+    odoTotal [4] = EEPROM_ReadByte (0x01);
+    odoTotal [3] = EEPROM_ReadByte (0x02);
+    odoTotal [2] = EEPROM_ReadByte (0x03);
+    odoTotal [1] = EEPROM_ReadByte (0x04);
+    odoTotal [0] = EEPROM_ReadByte (0x05);
     
     if (atualizaOdoTotal)
     {
-        for(unsigned char i = 0x00, j = 0x05; i < 0x06, j > 0x06; i++, j--){
-            unsigned char memoria = 0x10;
-            odoTotal[j] = EEPROM_ReadByte (memoria + i);   
-        }
-        
+               
         odoTotal[5]++;
         if (odoTotal[5] > 0x39)
         {
@@ -46,6 +51,7 @@ void odometroTotal(void){
                             odoTotal[0]++;
                             if (odoTotal[0] > 0x39)
                             {
+                                odoTotal[0] = 0x30;
                                 //do nothing
                             }
                         }
@@ -53,16 +59,27 @@ void odometroTotal(void){
                 }
             }
         }
+    }
         
-        unsigned char memoria = 0x10;
-        for (unsigned char i = 0x00, j = 0x05; i < 0x05, j > 0x00; i++, j--){
-            EEPROM_WriteByte(memoria + i, odoTotal[j]);
-        }
-        
+        atualizaOdoTotal = 0;
         PosicaoCursorLCD(1, 7);
         EscreveFraseRamLCD(odoTotal);
-        atualizaOdoTotal = 0;
-    }
+        
+        EEPROM_WriteByte(0x00, odoTotal[5]);
+        EEPROM_WriteByte(0x01, odoTotal[4]);
+        EEPROM_WriteByte(0x02, odoTotal[3]);
+        EEPROM_WriteByte(0x03, odoTotal[2]);
+        EEPROM_WriteByte(0x04, odoTotal[1]);
+        EEPROM_WriteByte(0x05, odoTotal[0]);
+        
+//        EEPROM_WriteByte(0x00, 0x30);
+//        EEPROM_WriteByte(0x01, 0x30);
+//        EEPROM_WriteByte(0x02, 0x30);
+//        EEPROM_WriteByte(0x03, 0x30);
+//        EEPROM_WriteByte(0x04, 0x30);
+//        EEPROM_WriteByte(0x05, 0x30);
+        
+    
 }
 
 void odometroParcial(void){
@@ -71,7 +88,8 @@ void odometroParcial(void){
     static unsigned char i;
     char position = 0;
     
-    if (atualizaOdoParcial){
+    if (atualizaOdoParcial)
+    {
         odoParcial[5]++;
         
         if (odoParcial[5] > 0x39){
@@ -104,16 +122,22 @@ void odometroParcial(void){
         EscreveFraseRamLCD(odoParcial);
         atualizaOdoParcial = 0;
         
-
-        if((B_Reset == 0)&&(trava == 0)) {
-            odoParcial[0] = 0x30;
-            odoParcial[1] = 0x30;  
-            odoParcial[2] = 0x30;  
-            odoParcial[3] = 0x30;
-            odoParcial[5] = 0x30;  
-            trava = 1;
-        } else if((B_Reset == 1) && (trava == 1)){ 
-                trava  = 0; 
-          }
     }
+    if((B_Reset == 0)&&(trava == 0)) 
+    {
+        odoParcial[0] = 0x30;
+        odoParcial[1] = 0x30;  
+        odoParcial[2] = 0x30;  
+        odoParcial[3] = 0x30;
+        odoParcial[5] = 0x30;  
+        PosicaoCursorLCD(2, 7);
+        EscreveFraseRamLCD(odoParcial);
+
+        trava = 1;
+    } 
+    else if((B_Reset == 1) && (trava == 1))
+    { 
+        trava  = 0; 
+    }
+
 }

@@ -19,23 +19,27 @@ void initHw(void);
 void display(void);
 
 void interrupt isr(void){
-    if(INTCONbits.TMR0IE && INTCONbits.TMR0IF) {   
+    if(INTCONbits.TMR0IE && INTCONbits.TMR0IF)
+    {   
         T0IF = 0;
         INTCONbits.TMR0IF = 0;   
         TMR0 = 69; 
 
         tempoCombustivel ++;
         countLed ++;  
-     }
+    }
                   
-    if ((PIR1bits.CCP1IF) && (PIE1bits.CCP1IE)){
+    if ((PIR1bits.CCP1IF) && (PIE1bits.CCP1IE))
+    {
         bordaParcial++;
         bordaTotal++;
-        if (bordaParcial == 500){
+        if (bordaParcial == 500)
+        {
             atualizaOdoParcial = 1;
             bordaParcial = 0;
         }
-        if (bordaTotal == 5000){
+        if (bordaTotal == 5000)
+        {
             atualizaOdoTotal = 1;
             bordaTotal = 0;
         }
